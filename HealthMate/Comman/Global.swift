@@ -340,6 +340,14 @@ class Global: NSObject {
     class func getActivityDescriptionArray() -> [String] {
         return ["Sedentary_details".toLocalize(), "Lightly_Active_details".toLocalize(), "Active_details".toLocalize(), "Very_Active_details".toLocalize()]
     }
+    
+    class func appVersion() -> String {
+        
+        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            return version
+        }
+        return ""
+    }
 }
 public enum Result<T> {
     case success(T)

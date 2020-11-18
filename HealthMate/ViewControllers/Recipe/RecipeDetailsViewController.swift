@@ -188,6 +188,9 @@ extension RecipeDetailsViewController : UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 1 {
+            return 2
+        }
         if section == 2 {
             return 1 + self.object.ingredientArray.count
         }
@@ -203,36 +206,71 @@ extension RecipeDetailsViewController : UITableViewDelegate, UITableViewDataSour
             let cell = self.tableView.dequeueReusableCell(withIdentifier: "RecipeCell", for: indexPath) as! RecipeListCell
             cell.recipeTitleLabel.text = object.title
             cell.recipeImageView.sd_setImage(with: URL(string: object.image)!, placeholderImage: UIImage(named: "recipePlaceholder"), options: SDWebImageOptions.continueInBackground, context: nil)
+            cell.seringLabel.text = "\(object.calorie.toString()) cal/\("servings".toLocalize()), \("serve".toLocalize()) \(object.serve)"
             return cell
         }
         if indexPath.section == 1 {
-            let cell = self.tableView.dequeueReusableCell(withIdentifier: "ChartCell", for: indexPath) as! RecipeListCell
-            cell.bgView.layer.addCustomShadow()
-            cell.dot1View.layer.cornerRadius = cell.dot1View.frame.size.height / 2
-            cell.dot2View.layer.cornerRadius = cell.dot1View.frame.size.height / 2
-            cell.dot3View.layer.cornerRadius = cell.dot1View.frame.size.height / 2
-            self.setup(pieChartView: cell.chartView)
-            cell.chartView.delegate = self
+            if indexPath.row == 0 {
+                
+                let cell = self.tableView.dequeueReusableCell(withIdentifier: "ChartCell", for: indexPath) as! RecipeListCell
+                cell.bgView.layer.addCustomShadow()
+                cell.dot1View.layer.cornerRadius = cell.dot1View.frame.size.height / 2
+                cell.dot2View.layer.cornerRadius = cell.dot1View.frame.size.height / 2
+                cell.dot3View.layer.cornerRadius = cell.dot1View.frame.size.height / 2
+                self.setup(pieChartView: cell.chartView)
+                cell.chartView.delegate = self
+                
+                // entry label styling
+                cell.chartView.entryLabelColor = .white
+                cell.chartView.entryLabelFont = .systemFont(ofSize: 12, weight: .light)
+                
+                self.setDataCount(cell.chartView)
+                
+                cell.chartView.animate(xAxisDuration: 1.4, easingOption: .easeOutBack)
+                
+                let totalGram = self.object.fat + self.object.carbs + self.object.protein
+                
+                let fatPer = self.object.fat * 100 / totalGram
+                let carbPer = self.object.carbs * 100 / totalGram
+                let proteinPer = self.object.protein * 100 / totalGram
+                
+                cell.totalCaloriesLabel.text = "\(self.object.calorie.toString()) \("Total_Calories".toLocalize())"
+                
+                cell.fatLabel.text = "\("Fat".toLocalize()) : \(self.object.fat.toString()) g/\(fatPer.toString()) %"
+                cell.carbLabel.text = "\("Carb".toLocalize()) : \(self.object.carbs.toString()) g/\(carbPer.toString()) %"
+                cell.proteinLabel.text = "\("Protein".toLocalize()) : \(self.object.protein.toString()) g/\(proteinPer.toString()) %"
+                return cell
+            }
             
-            // entry label styling
-            cell.chartView.entryLabelColor = .white
-            cell.chartView.entryLabelFont = .systemFont(ofSize: 12, weight: .light)
             
-            self.setDataCount(cell.chartView)
+            let cell = self.tableView.dequeueReusableCell(withIdentifier: "TimeCell", for: indexPath) as! RecipeListCell
+            cell.timeImageView.maskWith(color: Color.appGray)
             
-            cell.chartView.animate(xAxisDuration: 1.4, easingOption: .easeOutBack)
             
-            let totalGram = self.object.fat + self.object.carbs + self.object.protein
+            cell.preperationLabel.text = "\("PREP".toLocalize())\n\(self.object.preperationTime) m"
+            let attributedString: NSMutableAttributedString = cell.preperationLabel.attributedText!.mutableCopy() as! NSMutableAttributedString
+            let longString = cell.preperationLabel.text! as NSString
+            let matchRange = (longString as NSString).range(of: "\(self.object.preperationTime) m")
+            attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.black , range: matchRange)
+            cell.preperationLabel.attributedText = attributedString
             
-            let fatPer = self.object.fat * 100 / totalGram
-            let carbPer = self.object.carbs * 100 / totalGram
-            let proteinPer = self.object.protein * 100 / totalGram
+
+            cell.cookLabel.text = "\("COOK".toLocalize())\n\(self.object.cookTime) m"
+            let attributedString1: NSMutableAttributedString = cell.cookLabel.attributedText!.mutableCopy() as! NSMutableAttributedString
+            let longString1 = cell.cookLabel.text! as NSString
+            let matchRange1 = (longString1 as NSString).range(of: "\(self.object.cookTime) m")
+            attributedString1.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.black , range: matchRange1)
+            cell.cookLabel.attributedText = attributedString1
+
+            cell.totalLabel.text = "\("TOTAL".toLocalize())\n\(self.object.totalTime) m"
+            let attributedString2: NSMutableAttributedString = cell.totalLabel.attributedText!.mutableCopy() as! NSMutableAttributedString
+            let longString2 = cell.totalLabel.text! as NSString
+            let matchRange2 = (longString2 as NSString).range(of: "\(self.object.totalTime) m")
+            attributedString2.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.black , range: matchRange2)
+            cell.totalLabel.attributedText = attributedString2
             
-            cell.totalCaloriesLabel.text = "\(self.object.calorie.toString()) \("Total_Calories".toLocalize())"
-            
-            cell.fatLabel.text = "\("Fat".toLocalize()) : \(self.object.fat.toString()) g/\(fatPer.toString()) %"
-            cell.carbLabel.text = "\("Carb".toLocalize()) : \(self.object.carbs.toString()) g/\(carbPer.toString()) %"
-            cell.proteinLabel.text = "\("Protein".toLocalize()) : \(self.object.protein.toString()) g/\(proteinPer.toString()) %"
+            cell.seringLabel.text = "\(object.serve) \("servings".toLocalize())".uppercased()
+            cell.recipeDetailLabel.text = self.object.recipeDescription
             return cell
         }
         if indexPath.section == 2 {

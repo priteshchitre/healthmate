@@ -70,6 +70,10 @@ extension Float {
         }
         return String(format: "%.2f", self)
     }
+    func toRound() -> String {
+        
+        return String(format: "%.0f", self)
+    }
 }
 extension Sequence where Element: AdditiveArithmetic {
     func sum() -> Element {

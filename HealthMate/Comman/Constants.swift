@@ -12,14 +12,18 @@ struct Constants {
     static let SHARED_SECRET_KEY = "702f8c1ba9a94d4dbf9070afb425b9ea"
     static let ACCESS_TOKEN = "shhh2020heathMateX"
     
-    static let PRIVACY_POLICY = "https://astrocompatibility.co/privacy-policy"
-    static let EULA = "https://astrocompatibility.co/eula"
-    static let SUPPORT_EMAIL = "support@astrocompatibility.co"
+    static let PRIVACY_POLICY = "https://gethealthmate.com/privacy-policy"
+    static let EULA = "https://gethealthmate.com/eula"
+    static let SUPPORT_EMAIL = "support@gethealthmate.com"
     
     static let BundleId = "com.acodecreative.healthmate"
     static let APP_TITLE = "Health Mate"
     static let APP_URL = "https://apps.apple.com/us/app/healthmate-calorie-counter/id1536629326"
     static let APP_ID = "1536629326"
+
+    static let TENJIN_KEY = "CDSXTDAMB7LWROYV1AWX5CFC3TUWLTWV"
+    static let FLURRY_KEY = "HVQ3NJ9W94664JRK6MMR"
+    static let ONESIGNAL_API_KEY = "acbeea84-9b2f-4220-a94a-43c52fd48c4e"
     
     static let LOCAL_DASHBOARD = "LocalDashboard"
     static let LOCAL_SUBSCRIPTION = "LocalSubscription"
@@ -43,7 +47,7 @@ enum INPUT_TYPE : String {
     case WEIGHT = "WEIGHT", HEIGHT = "HEIGHT", EXPRECTED_WEIGHT = "EXPRECTED_WEIGHT", NAME = "NAME"
 }
 enum PLANS : String {
-    case WEEKLY = "healthmate_premium_weekly_7", MONTHLY = "healthmate_premium_monthly", YEARLY = "healthmate_premium_yearly"
+    case WEEKLY = "healthmate_premium_weekly_7", MONTHLY = "healthmate_premium_monthly", YEARLY = "healthmate_premium_yearly", WEEKLY_3DAYS_TRIAL = "healthmate_premium_weekly"
 }
 enum ACTIVITY_LEVEL : String {
     case SENDETARY = "sedentary", LIGHTLY_ACTIVE = "lightly_active", ACTIVE = "active", VERY_ACTIVE = "very_active"

@@ -63,6 +63,25 @@ class GetStartedTabViewController: XLTwitterPagerTabStripViewController {
         if self.selectedIndex < 0 {
             _ = self.navigationController?.popViewController(animated: true)
         }
+        else if self.selectedIndex == 7 {
+            
+            UNUserNotificationCenter.current().getNotificationSettings { (setting) in
+                
+                if setting.authorizationStatus == .authorized {
+                    DispatchQueue.main.async {
+                        self.selectedIndex -= 1
+                        self.moveToViewController(at: UInt(self.selectedIndex))
+                        self.collectionView.reloadData()
+                    }
+                }
+                else {
+                    DispatchQueue.main.async {
+                        self.moveToViewController(at: UInt(self.selectedIndex))
+                        self.collectionView.reloadData()
+                    }
+                }
+            }
+        }
         else {
             self.moveToViewController(at: UInt(self.selectedIndex))
             self.collectionView.reloadData()
@@ -74,6 +93,25 @@ class GetStartedTabViewController: XLTwitterPagerTabStripViewController {
         self.selectedIndex += 1
         if self.selectedIndex == 6 {
             self.getCalorieCalculator()
+        }
+        else if self.selectedIndex == 7 {
+            
+            UNUserNotificationCenter.current().getNotificationSettings { (setting) in
+                
+                if setting.authorizationStatus == .authorized {
+                    DispatchQueue.main.async {
+                        self.selectedIndex += 1
+                        self.moveToViewController(at: UInt(self.selectedIndex))
+                        self.collectionView.reloadData()
+                    }
+                }
+                else {
+                    DispatchQueue.main.async {
+                        self.moveToViewController(at: UInt(self.selectedIndex))
+                        self.collectionView.reloadData()
+                    }
+                }
+            }
         }
         else {
             self.moveToViewController(at: UInt(self.selectedIndex))

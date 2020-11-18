@@ -18,6 +18,7 @@ class APIHelperClass: NSObject {
     static let recipes : String                     = "recipes"
     static let activities : String                  = "activities"
     static let activitiesQuery : String             = "activities/query"
+    static let config : String                      = "config"
     
     var responseData : NSMutableData!
     var objectAFJSONResponseSerializer = AFJSONResponseSerializer(readingOptions: .allowFragments)
@@ -37,6 +38,7 @@ class APIHelperClass: NSObject {
         serializer.setValue("application/json", forHTTPHeaderField: "Content-Type")
         serializer.setValue("application/json", forHTTPHeaderField: "Accept")
         serializer.setValue(Constants.ACCESS_TOKEN, forHTTPHeaderField: "Authorization")
+        serializer.setValue(Global.getLanguageCode(), forHTTPHeaderField: "accept-language")
         manager.requestSerializer = serializer
         manager.responseSerializer.acceptableContentTypes = NSSet(object: "application/json") as? Set<String>
         manager.requestSerializer.timeoutInterval = 120
@@ -90,6 +92,7 @@ class APIHelperClass: NSObject {
         serializer.setValue("application/json", forHTTPHeaderField: "Content-Type")
         serializer.setValue("application/json", forHTTPHeaderField: "Accept")
         serializer.setValue(Constants.ACCESS_TOKEN, forHTTPHeaderField: "Authorization")
+        serializer.setValue(Global.getLanguageCode(), forHTTPHeaderField: "accept-language")
         manager.requestSerializer = serializer
         manager.responseSerializer.acceptableContentTypes = NSSet(object: "application/json") as? Set<String>
         

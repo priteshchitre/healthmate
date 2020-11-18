@@ -242,3 +242,11 @@
 "per" = "per";
 "Are_you_sure_you_want_to_remove_selected_exercise" = "Sei sicuro di voler rimuovere l'esercizio selezionato?";
 "Calories_burned" = "Calorie bruciate";
+"PREP" = "PREP";
+"COOK" = "CUCINARE";
+"TOTAL" = "TOTALE";
+"Notifications_are_turned_off" = "Le notifiche sono disattivate!";
+"Notifications_are_turned_off_message" = "HealthMate non può inviarti notifiche di promemoria alimentari. Per risolvere questo problema, attiva la notifica nelle Impostazioni.";
+"Open_Settings" = "Apri le impostazioni";
+"Allow" = "Permettere";
+"Dont_Allow" = "Non permettere";

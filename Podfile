@@ -18,4 +18,8 @@ pod 'FBSDKLoginKit'
 pod 'BAFluidView'
 pod 'SDWebImage', '~> 5.0'
 pod 'JBChartView'
+pod 'TenjinSDK'
+pod 'Flurry-iOS-SDK/FlurrySDK'
+pod 'Flurry-iOS-SDK/FlurryMessaging'
+pod 'OneSignal', '>= 2.11.2', '< 3.0'
 end

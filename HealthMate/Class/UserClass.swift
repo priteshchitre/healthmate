@@ -10,6 +10,51 @@ import UIKit
 
 class UserClass: NSObject {
     
+    class func setSubscriptionConfig(_ value : Int) {
+        UserDefaults.standard.setValue(value, forKey: "subscriptionConfig")
+        UserDefaults.standard.synchronize()
+    }
+    
+    class func getSubscriptionConfig() -> Int {
+        
+        var value : Int = 1
+        if  UserDefaults.standard.object(forKey: "subscriptionConfig") != nil {
+            value = UserDefaults.standard.integer(forKey: "subscriptionConfig")
+        }
+        return value
+    }
+    
+    class func setDaysFree(_ value : Int) {
+        UserDefaults.standard.setValue(value, forKey: "daysFree")
+        UserDefaults.standard.synchronize()
+    }
+    
+    class func getDaysFree() -> Int {
+        
+        var value : Int = 7
+        if  UserDefaults.standard.object(forKey: "daysFree") != nil {
+            value = UserDefaults.standard.integer(forKey: "daysFree")
+        }
+        return value
+    }
+    
+    class func setWeeklySubscriptionId(_ value : String) {
+        UserDefaults.standard.setValue(value, forKey: "weeklySubscriptionId")
+        UserDefaults.standard.synchronize()
+    }
+    
+    class func getWeeklySubscriptionId() -> String {
+        
+        var value : String = ""
+        if  UserDefaults.standard.object(forKey: "weeklySubscriptionId") != nil {
+            value = UserDefaults.standard.string(forKey: "weeklySubscriptionId") ?? ""
+        }
+        if value == "" {
+            value = PLANS.WEEKLY.rawValue
+        }
+        return value
+    }
+    
     class func setIsLogin(_ value : Bool) {
         UserDefaults.standard.setValue(value, forKey: "isLogin")
         UserDefaults.standard.synchronize()
@@ -296,7 +341,7 @@ class UserClass: NSObject {
     class func isUserSubscribe() -> Bool {
         
 //        return true
-        if UserClass.isWeeklySubscription() || UserClass.isMonthlySubscription() || UserClass.isYearlySubscription() {
+        if UserClass.isWeeklySubscription() || UserClass.isWeekly3DaysSubscription() || UserClass.isMonthlySubscription() || UserClass.isYearlySubscription() {
             return true
         }
         return false
@@ -313,6 +358,20 @@ class UserClass: NSObject {
         var value : Bool = false
         if  UserDefaults.standard.object(forKey: "isSubscribeScreen") != nil {
             value = UserDefaults.standard.bool(forKey: "isSubscribeScreen")
+        }
+        return value
+    }
+    
+    class func setWeekly3DaysSubscription(_ value : Bool) {
+        UserDefaults.standard.setValue(value, forKey: "isWeekly3DaysSubscription")
+        UserDefaults.standard.synchronize()
+    }
+    
+    class func isWeekly3DaysSubscription() -> Bool {
+        
+        var value : Bool = false
+        if  UserDefaults.standard.object(forKey: "isWeekly3DaysSubscription") != nil {
+            value = UserDefaults.standard.bool(forKey: "isWeekly3DaysSubscription")
         }
         return value
     }
@@ -362,6 +421,7 @@ class UserClass: NSObject {
     class func resetUser() {
     
         UserClass.setIsLogin(false)
+        UserClass.setWeekly3DaysSubscription(false)
         UserClass.setWeeklySubscription(false)
         UserClass.setMonthlySubscription(false)
         UserClass.setYearlySubscription(false)

@@ -23,16 +23,16 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb1014540325689843</string>
+				<string>fb510869860282057</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>FacebookAppID</key>
-	<string>1014540325689843</string>
+	<string>510869860282057</string>
 	<key>FacebookDisplayName</key>
-	<string>HealthMate</string>
+	<string>Health Mate</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>

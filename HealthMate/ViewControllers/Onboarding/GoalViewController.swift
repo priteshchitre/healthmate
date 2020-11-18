@@ -29,7 +29,11 @@ class GoalViewController: UIViewController {
 
         self.selectedIndex = -1
         if Global.sharedInstance.calorieCalculatorArray.count == 1 {
-            self.selectedIndex = 1
+            self.continueButton.backgroundColor = Color.roundButtonColor
+            self.selectedIndex = 0
+        }
+        else {
+            self.continueButton.backgroundColor = Color.disableGray
         }
         self.tableView.reloadData()
     }

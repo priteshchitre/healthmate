@@ -242,3 +242,11 @@
 "per" = "на";
 "Are_you_sure_you_want_to_remove_selected_exercise" = "Вы действительно хотите удалить выбранное упражнение??";
 "Calories_burned" = "Сожжено калорий";
+"PREP" = "подготовка";
+"COOK" = "ГОТОВИТЬ";
+"TOTAL" = "ОБЩЕЕ";
+"Notifications_are_turned_off" = "Уведомления отключены!";
+"Notifications_are_turned_off_message" = "HealthMate не может отправлять вам напоминания о еде. Чтобы исправить это, включите уведомление в настройках.";
+"Open_Settings" = "Открыть настройки";
+"Allow" = "Позволять";
+"Dont_Allow" = "Не позволять";

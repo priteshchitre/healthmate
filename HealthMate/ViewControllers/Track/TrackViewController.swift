@@ -257,7 +257,7 @@ extension TrackViewController : UITableViewDelegate, UITableViewDataSource {
                 obj.servings * obj.foodObject.calorie
             }
             let consumedCaloriesSum = val.reduce(0, +)
-            cell.consumedCountLabel.text = consumedCaloriesSum.toString()
+            cell.consumedCountLabel.text = consumedCaloriesSum.toRound()
             
             
             let burnedVal = self.selectedBurnedDataArray.map { obj in
@@ -266,11 +266,11 @@ extension TrackViewController : UITableViewDelegate, UITableViewDataSource {
             
             let burnCalories : Float = burnedVal.reduce(0, +)
             let netCalories = consumedCaloriesSum - burnCalories
-            cell.netCountLabel.text = netCalories.toString()
-            cell.burnCountLabel.text = burnCalories.toString()
+            cell.netCountLabel.text = netCalories.toRound()
+            cell.burnCountLabel.text = burnCalories.toRound()
             
             let calories = UserClass.getGoalCalories() - netCalories
-            cell.caloriesLeftLabel.text = "\(calories.toString()) \("Calories_left".toLocalize())"
+            cell.caloriesLeftLabel.text = "\(calories.toRound()) \("Calories_left".toLocalize())"
             return cell
         }
         if indexPath.section == 2 {

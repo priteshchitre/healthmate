@@ -242,3 +242,11 @@
 "per" = "par";
 "Are_you_sure_you_want_to_remove_selected_exercise" = "Voulez-vous vraiment supprimer l'exercice sélectionné?";
 "Calories_burned" = "Calories brûlées";
+"PREP" = "PRÉPARATION";
+"COOK" = "CUISINIER";
+"TOTAL" = "TOTAL";
+"Notifications_are_turned_off" = "Les notifications sont désactivées!";
+"Notifications_are_turned_off_message" = "HealthMate ne peut pas vous envoyer de notifications de rappel de nourriture. Pour résoudre ce problème, veuillez activer la notification dans les paramètres.";
+"Open_Settings" = "Ouvrir les paramètres";
+"Allow" = "Autoriser";
+"Dont_Allow" = "Ne pas permettre";

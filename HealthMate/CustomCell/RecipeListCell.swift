@@ -46,6 +46,14 @@ class RecipeListCell: UITableViewCell {
     @IBOutlet weak var dotView: UIView!
     @IBOutlet weak var numberLabel: UILabel!
     
+    @IBOutlet weak var timeImageView: UIImageView!
+    
+    @IBOutlet weak var preperationLabel: UILabel!
+    @IBOutlet weak var cookLabel: UILabel!
+    @IBOutlet weak var totalLabel: UILabel!
+    
+    @IBOutlet weak var recipeDetailLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

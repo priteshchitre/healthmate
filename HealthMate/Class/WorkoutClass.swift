@@ -129,6 +129,7 @@ class RecipeClass: NSObject {
     var protein : Float = 0
     var preperationTime : Int = 0
     var cookTime : Int = 0
+    var totalTime : Int = 0
     var serve : Int = 0
     var ingredientArray : [IngredientClass] = []
     var directionsArray : [String] = []
@@ -159,6 +160,7 @@ class RecipeClass: NSObject {
         if let array = data.value(forKey: "meals") as? [String] {
             object.meals = array
         }
+        object.totalTime = object.preperationTime + object.cookTime
         return object
     }
     

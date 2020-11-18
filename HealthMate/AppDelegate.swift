@@ -9,9 +9,11 @@ import UIKit
 import SwiftyStoreKit
 import FBSDKCoreKit
 import Foundation
+import Flurry_iOS_SDK
+import OneSignal
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, FlurryMessagingDelegate {
     
     var window: UIWindow?
     
@@ -22,6 +24,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if #available(iOS 13.0, *) {
             window!.overrideUserInterfaceStyle = .light
         }
+        
+        TenjinSDK.getInstance(Constants.TENJIN_KEY)
+        TenjinSDK.connect()
+        
+        OneSignal.setLogLevel(.LL_VERBOSE, visualLevel: .LL_NONE)
+        
+        let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false, kOSSettingsKeyInAppLaunchURL: false]
+        
+        OneSignal.initWithLaunchOptions(launchOptions,
+                                        appId: Constants.ONESIGNAL_API_KEY,
+                                        handleNotificationAction: nil,
+                                        settings: onesignalInitSettings)
+        
+        OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification;
+        
+        // promptForPushNotifications will show the native iOS notification permission prompt.
+        // We recommend removing the following code and instead using an In-App Message to prompt for notification permission (See step 8)
+        
+        
+        // FlurryMessaging.setAutoIntegrationForMessaging()
+        FlurryMessaging.setMessagingDelegate(self)
+        
+        Flurry.startSession(Constants.FLURRY_KEY, with: FlurrySessionBuilder
+                                .init()
+                                .withIAPReportingEnabled(true)
+                                .withCrashReporting(true)
+                                .withLogLevel(FlurryLogLevelAll)
+                                .withIncludeBackgroundSessions(inMetrics: true))
         
         self.setupIAP()
         
@@ -45,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 Global.setLanguageCode("en")
             }
         }
-        
+        self.getAppConfig()
         if UserClass.isUserSubscribe() && UserClass.isLogin() {
             Global.openDashboard()
         }
@@ -59,6 +89,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         return ApplicationDelegate.shared.application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+        print(token)
+        FlurryMessaging.setDeviceToken(deviceToken)
+    }
+    
+    func didReceive(_ message: FlurryMessage) {
+        
+        print("message = ", message)
+    }
+    
+    func didReceiveAction(withIdentifier identifier: String?, message: FlurryMessage) {
+        
+//        print("identifier = ", identifier)
+//        print("message = ", message)
     }
     
     func setupIAP() {
@@ -101,6 +148,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IAPHelper.subscribePayment(productId: PLANS.WEEKLY.rawValue) { (isPurchased) in
             UserClass.setWeeklySubscription(isPurchased)
             if !isPurchased {
+                self.checkWeekly3DaysSubscription()
+            }
+        }
+    }
+    
+    func checkWeekly3DaysSubscription() {
+        
+        IAPHelper.subscribePayment(productId: PLANS.WEEKLY_3DAYS_TRIAL.rawValue) { (isPurchased) in
+            UserClass.setWeekly3DaysSubscription(isPurchased)
+            if !isPurchased {
                 self.checkMonthlySubscription()
             }
         }
@@ -120,6 +177,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         IAPHelper.subscribePayment(productId: PLANS.YEARLY.rawValue) { (isPurchased) in
             UserClass.setYearlySubscription(isPurchased)
+        }
+    }
+    
+    func getAppConfig() {
+        
+        if !Global.checkNetworkConnectivity() {
+            return
+        }
+        APIHelperClass.sharedInstance.getRequest("\(APIHelperClass.config)?version=\(Global.appVersion())", parameters: NSMutableDictionary()) { (result, error, statusCode) in
+            
+            if statusCode == 200 {
+                UserClass.setSubscriptionConfig(AnyObjectRef(result?.value(forKey: "storeScreenVariant") as AnyObject).intValue())
+                UserClass.setWeeklySubscriptionId(AnyObjectRef(result?.value(forKey: "storeScreenVariant") as AnyObject).stringValue())
+                UserClass.setDaysFree(AnyObjectRef(result?.value(forKey: "daysFree") as AnyObject).intValue())
+            }
         }
     }
 }

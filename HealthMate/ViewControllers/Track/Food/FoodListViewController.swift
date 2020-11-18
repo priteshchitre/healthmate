@@ -231,23 +231,23 @@ extension FoodListViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        if self.isMyFood {
-            return .delete
-        }
-        return .none
+       
+        return .delete
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
-        if !self.isMyFood {
-            return []
-        }
         let deleteAction = UITableViewRowAction(style: UITableViewRowAction.Style.destructive, title: "Delete".toLocalize()) { (action, indexPath1) in
             
             let actionsheet = UIAlertController(title: "Are_you_sure_you_want_to_delete_selected_food".toLocalize(), message: "", preferredStyle: UIAlertController.Style.actionSheet)
             actionsheet.addAction(UIAlertAction(title: "Delete".toLocalize(), style: UIAlertAction.Style.destructive, handler: { (action) in
                 
-                FoodClass.deleteRecord(self.dataArray[indexPath.row])
+                if self.isMyFood {
+                    FoodClass.deleteRecord(self.dataArray[indexPath.row])
+                }
+                else {
+                    ConsumeClass.deleteRecord(self.todayConsumedDataArray[indexPath.row])
+                }
                 self.updateConsumedData()
             }))
             actionsheet.addAction(UIAlertAction(title: "Cancel".toLocalize(), style: UIAlertAction.Style.cancel, handler: { (action) in

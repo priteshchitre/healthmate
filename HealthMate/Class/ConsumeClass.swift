@@ -90,7 +90,7 @@ class ConsumeClass: NSObject {
         Global.createJSONDetails("consumeData", jsonData: newDic)
     }
     
-    class func deleteRecord(_ object : FoodClass) {
+    class func deleteRecord(_ object : ConsumeClass) {
         
         let dataArray = NSArray()
         var consumedDic : NSDictionary = [
@@ -110,7 +110,7 @@ class ConsumeClass: NSObject {
         let filterArray = consumedArray.filter { (obj) -> Bool in
             if let dic1 = obj as? NSDictionary {
                 if let str = dic1.value(forKey: "consumeId") as? String {
-                    if str == object.foodId {
+                    if str == object.consumeId {
                         return true
                     }
                 }

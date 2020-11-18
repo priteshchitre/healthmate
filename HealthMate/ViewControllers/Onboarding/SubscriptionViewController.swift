@@ -42,6 +42,7 @@ class SubscriptionViewController: UIViewController {
     
     @IBOutlet weak var textLabelTop: NSLayoutConstraint!
     @IBOutlet weak var textLabelBottom: NSLayoutConstraint!
+    @IBOutlet weak var weeklyFreeLabel: UILabel!
     
     var isTrial : Bool = true
     var selectedPlan = PLANS.WEEKLY
@@ -61,6 +62,14 @@ class SubscriptionViewController: UIViewController {
         self.weeklyView.layer.addCustomShadow()
         self.yearlyView.layer.addCustomShadow()
         
+        self.weeklyView.layer.borderWidth = 1
+        self.weeklyView.layer.borderColor = Color.appOrange.cgColor
+
+        self.monthlyView.layer.borderWidth = 1
+        self.monthlyView.layer.borderColor = Color.appOrange.cgColor
+        
+        self.yearlyView.layer.borderWidth = 1
+        self.yearlyView.layer.borderColor = Color.appOrange.cgColor
         
         self.weeklyTextLabel.text = "weekly".toLocalize().capitalized
         self.monthlyTextLabel.text = "monthly".toLocalize().capitalized
@@ -116,6 +125,8 @@ class SubscriptionViewController: UIViewController {
 
         attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
         self.textLabel.attributedText = attributedString
+        
+        
     }
     
     func initView() {
@@ -149,13 +160,22 @@ class SubscriptionViewController: UIViewController {
             self.textLabelTop.constant = 8
             self.textLabelBottom.constant = 8
         }
+        
+        if UserClass.getSubscriptionConfig() == 1 {
+            self.weeklyFreeLabel.isHidden = true
+            self.weeklyView.isHidden = false
+        }
+        else {
+            self.weeklyFreeLabel.isHidden = false
+            self.weeklyView.isHidden = true
+        }
     }
     
     func initElements() {
         
         Global.showProgressHud()
         
-        SwiftyStoreKit.retrieveProductsInfo([PLANS.WEEKLY.rawValue, PLANS.MONTHLY.rawValue, PLANS.YEARLY.rawValue]) { result in
+        SwiftyStoreKit.retrieveProductsInfo([PLANS.WEEKLY.rawValue, PLANS.MONTHLY.rawValue, PLANS.YEARLY.rawValue, PLANS.WEEKLY_3DAYS_TRIAL.rawValue]) { result in
             
             DispatchQueue.main.async {
                 Global.hideProgressHud()
@@ -164,7 +184,20 @@ class SubscriptionViewController: UIViewController {
                 
                 if product.productIdentifier == PLANS.WEEKLY.rawValue {
                     if let price = product.localizedPrice {
-                        self.freeLabel.text = "\("First_7_days_free_then".toLocalize()) \(price)/\("week".toLocalize()). \("Cancel_anytime".toLocalize())"
+                        if UserClass.getWeeklySubscriptionId() != PLANS.WEEKLY_3DAYS_TRIAL.rawValue {
+                            self.freeLabel.text = "\("First_7_days_free_then".toLocalize()) \(price)/\("week".toLocalize()). \("Cancel_anytime".toLocalize())"
+                            self.weeklyFreeLabel.text = "\("First_7_days_free_then".toLocalize()) \(price)/\("week".toLocalize()). \("No_commitment_Cancel_anytime".toLocalize())"
+                        }
+                    }
+                }
+                else if product.productIdentifier == PLANS.WEEKLY_3DAYS_TRIAL.rawValue {
+                    if let price = product.localizedPrice {
+                        if UserClass.getWeeklySubscriptionId() == PLANS.WEEKLY_3DAYS_TRIAL.rawValue {
+                            self.freeLabel.text = "\("First_7_days_free_then".toLocalize()) \(price)/\("week".toLocalize()). \("Cancel_anytime".toLocalize())"
+                            self.weeklyFreeLabel.text = "\("First_7_days_free_then".toLocalize()) \(price)/\("week".toLocalize()). \("No_commitment_Cancel_anytime".toLocalize())"
+                            self.freeLabel.text = self.freeLabel.text?.replacingOccurrences(of: "7", with: "\(UserClass.getDaysFree())")
+                            self.weeklyFreeLabel.text = self.freeLabel.text?.replacingOccurrences(of: "7", with: "\(UserClass.getDaysFree())")
+                        }
                     }
                 }
                 else if product.productIdentifier == PLANS.MONTHLY.rawValue {
@@ -245,6 +278,13 @@ class SubscriptionViewController: UIViewController {
     
     @IBAction func onContinueButtonTap(_ sender: Any) {
         
+        if self.selectedPlan == .WEEKLY {
+            
+            if UserClass.getWeeklySubscriptionId() == PLANS.WEEKLY_3DAYS_TRIAL.rawValue {
+                self.selectedPlan = .WEEKLY_3DAYS_TRIAL
+            }
+        }
+        
 //        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
 //            Global.openDashboard()
 //        }
@@ -286,6 +326,23 @@ class SubscriptionViewController: UIViewController {
                 // Deliver content from server, then:
                 if purchase.needsFinishTransaction {
                     SwiftyStoreKit.finishTransaction(purchase.transaction)
+                }
+                TenjinSDK.sendEvent(withName: self.selectedPlan.rawValue)
+                
+                if self.selectedPlan == .MONTHLY || self.selectedPlan == .YEARLY {
+                    
+                    if let transaction = purchase.transaction as? SKPaymentTransaction {
+                        
+                        if let receiptDataURL = Bundle.main.appStoreReceiptURL {
+                            
+                            if let data = try? Data(contentsOf: receiptDataURL) {
+                                TenjinSDK.transaction(transaction, andReceipt: data)
+                            }
+                        }
+                    }
+                }
+                else {
+                    TenjinSDK.sendEvent(withName: "start_trial")
                 }
             }
             if let alert = self.alertForPurchaseResult(result) {
@@ -336,7 +393,11 @@ class SubscriptionViewController: UIViewController {
                     if !restoreProducts.contains(PLANS.WEEKLY.rawValue) {
                         restoreProducts.append(PLANS.WEEKLY.rawValue)
                     }
-
+                }
+                else if purchase.productId == PLANS.WEEKLY_3DAYS_TRIAL.rawValue || purchase.productId == "\(Constants.BundleId).\(PLANS.WEEKLY_3DAYS_TRIAL.rawValue)" {
+                    if !restoreProducts.contains(PLANS.WEEKLY_3DAYS_TRIAL.rawValue) {
+                        restoreProducts.append(PLANS.WEEKLY_3DAYS_TRIAL.rawValue)
+                    }
                 }
                 else if purchase.productId == PLANS.MONTHLY.rawValue || purchase.productId == "\(Constants.BundleId).\(PLANS.MONTHLY.rawValue)" {
                     if !restoreProducts.contains(PLANS.MONTHLY.rawValue) {
@@ -373,6 +434,9 @@ class SubscriptionViewController: UIViewController {
             
             if productsIdArray[index] == PLANS.WEEKLY.rawValue {
                 UserClass.setWeeklySubscription(isPurchased)
+            }
+            else if productsIdArray[index] == PLANS.WEEKLY_3DAYS_TRIAL.rawValue {
+                UserClass.setWeekly3DaysSubscription(isPurchased)
             }
             else if productsIdArray[index] == PLANS.MONTHLY.rawValue {
                 UserClass.setMonthlySubscription(isPurchased)
@@ -514,6 +578,9 @@ extension SubscriptionViewController {
             print("Purchase Success: \(purchase.productId)")
             if purchase.productId == PLANS.WEEKLY.rawValue || purchase.productId == "\(Constants.BundleId).\(PLANS.WEEKLY.rawValue)" {
                 UserClass.setWeeklySubscription(true)
+            }
+            else if purchase.productId == PLANS.WEEKLY_3DAYS_TRIAL.rawValue || purchase.productId == "\(Constants.BundleId).\(PLANS.WEEKLY_3DAYS_TRIAL.rawValue)" {
+                UserClass.setWeekly3DaysSubscription(true)
             }
             else if purchase.productId == PLANS.MONTHLY.rawValue || purchase.productId == "\(Constants.BundleId).\(PLANS.MONTHLY.rawValue)" {
                 UserClass.setMonthlySubscription(true)

@@ -9,4 +9,5 @@
 #import "XLButtonBarViewCell.h"
 #import "XLButtonBarView.h"
 #import "XLTwitterPagerTabStripViewController.h"
+#import "TenjinSDK.h"
 @import IQKeyboardManager;

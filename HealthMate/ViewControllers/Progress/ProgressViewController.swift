@@ -167,8 +167,8 @@ class ProgressViewController: UIViewController {
                         let filterArray = self.consumedDataArray.filter { (obj) -> Bool in
                             return obj.date == formatter.string(from: date)
                         }
-                        if filterArray.count > 0 {
-                            progressObj.value = filterArray[0].servings * filterArray[0].foodObject.calorie
+                        for obj11 in filterArray {
+                            progressObj.value += (obj11.servings * obj11.foodObject.calorie)
                         }
                     }
                     else if self.progress == .CALORIE_BURED {
@@ -176,8 +176,8 @@ class ProgressViewController: UIViewController {
                         let filterArray = self.burnedDataArray.filter { (obj) -> Bool in
                             return obj.date == formatter.string(from: date)
                         }
-                        if filterArray.count > 0 {
-                            progressObj.value = filterArray[0].calories
+                        for obj11 in filterArray {
+                            progressObj.value += obj11.calories
                         }
                     }
                     else if self.progress == .WATER {
@@ -242,8 +242,8 @@ class ProgressViewController: UIViewController {
                         let filterArray = self.consumedDataArray.filter { (obj) -> Bool in
                             return obj.date == formatter.string(from: date)
                         }
-                        if filterArray.count > 0 {
-                            progressObj.value = filterArray[0].servings * filterArray[0].foodObject.calorie
+                        for obj11 in filterArray {
+                            progressObj.value = obj11.servings * obj11.foodObject.calorie
                         }
                     }
                     else if self.progress == .CALORIE_BURED {
@@ -251,8 +251,8 @@ class ProgressViewController: UIViewController {
                         let filterArray = self.burnedDataArray.filter { (obj) -> Bool in
                             return obj.date == formatter.string(from: date)
                         }
-                        if filterArray.count > 0 {
-                            progressObj.value = filterArray[0].calories
+                        for obj11 in filterArray {
+                            progressObj.value += obj11.calories
                         }
                     }
                     else if self.progress == .WATER {
@@ -268,8 +268,6 @@ class ProgressViewController: UIViewController {
                             }
                             progressObj.value = water
                         }
-
-
                     }
                     else if self.progress == .WEIGHT {
                         
@@ -486,7 +484,7 @@ class ProgressViewController: UIViewController {
             }
         }
         if self.progress == .CALORIE || self.progress == .CALORIE_BURED {
-            self.todayLabel.text = "\(object.value.toString()) cal"
+            self.todayLabel.text = "\(object.value.toRound()) cal"
         }
         else if self.progress == .WEIGHT {
             self.todayLabel.text = "\(object.value.toString()) \(UserClass.getSettingWeight())"
@@ -504,7 +502,7 @@ class ProgressViewController: UIViewController {
         }
         let avg = totalVal / Float(self.dataArray.count)
         if self.progress == .CALORIE || self.progress == .CALORIE_BURED {
-            self.dailyAvgLabel.text = "\(avg.toString()) cal"
+            self.dailyAvgLabel.text = "\(avg.toRound()) cal"
         }
         else if self.progress == .WATER {
             self.dailyAvgLabel.text = "\(avg.toString()) \(UserClass.getSettingWater())"
@@ -520,7 +518,7 @@ class ProgressViewController: UIViewController {
             self.goalLabel.text = "\(Global.getConvertedGoalWeight()) \(UserClass.getSettingWeight())"
         }
         else if self.progress == .CALORIE || self.progress == .CALORIE_BURED {
-            self.goalLabel.text = "\(UserClass.getGoalCalories().toString()) cal"
+            self.goalLabel.text = "\(UserClass.getGoalCalories().toRound()) cal"
         }
         else {
             self.goalLabel.text = ""

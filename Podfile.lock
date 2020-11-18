@@ -30,8 +30,12 @@ PODS:
     - FBSDKLoginKit/Login (= 8.0.0)
   - FBSDKLoginKit/Login (8.0.0):
     - FBSDKCoreKit (~> 8.0.0)
+  - Flurry-iOS-SDK/FlurryMessaging (11.1.1):
+    - Flurry-iOS-SDK/FlurrySDK
+  - Flurry-iOS-SDK/FlurrySDK (11.1.1)
   - IQKeyboardManager (6.5.5)
   - JBChartView (3.0.13)
+  - OneSignal (2.15.4)
   - ReachabilitySwift (3)
   - SDWebImage (5.7.3):
     - SDWebImage/Core (= 5.7.3)
@@ -40,6 +44,7 @@ PODS:
     - SwiftMessages/App (= 8.0.2)
   - SwiftMessages/App (8.0.2)
   - SwiftyStoreKit (0.16.1)
+  - TenjinSDK (1.12.0)
 
 DEPENDENCIES:
   - ActionSheetPicker-3.0
@@ -48,12 +53,16 @@ DEPENDENCIES:
   - Charts
   - DropDown
   - FBSDKLoginKit
+  - Flurry-iOS-SDK/FlurryMessaging
+  - Flurry-iOS-SDK/FlurrySDK
   - IQKeyboardManager
   - JBChartView
+  - OneSignal (< 3.0, >= 2.11.2)
   - ReachabilitySwift (~> 3)
   - SDWebImage (~> 5.0)
   - SwiftMessages
   - SwiftyStoreKit
+  - TenjinSDK
 
 SPEC REPOS:
   trunk:
@@ -64,12 +73,15 @@ SPEC REPOS:
     - DropDown
     - FBSDKCoreKit
     - FBSDKLoginKit
+    - Flurry-iOS-SDK
     - IQKeyboardManager
     - JBChartView
+    - OneSignal
     - ReachabilitySwift
     - SDWebImage
     - SwiftMessages
     - SwiftyStoreKit
+    - TenjinSDK
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: e544318243b95d1e94522613238b86ccd425e881
@@ -79,13 +91,16 @@ SPEC CHECKSUMS:
   DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
   FBSDKCoreKit: 9d27fe97a2fa2abe5eeefea8240e837623ab88e0
   FBSDKLoginKit: 2cbaf5405379731b22f2ebc224f7c30f62378171
+  Flurry-iOS-SDK: 8f3f7fce27177002f15f145eede88dc1b9ac0cd0
   IQKeyboardManager: 3a8b9e603f8b0eeaf5f096a1f2b2cfcf121992ef
   JBChartView: ea240dca7b83a92f47d4ae766beb3714753988a1
+  OneSignal: 6647275955d0f06d9e17c90dc93af9d85ecfd2b9
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   SDWebImage: 97351f6582ceca541ea294ba66a1fcb342a331c2
   SwiftMessages: 633304165351b8e3dcbb81a71f8efcd86f9c1669
   SwiftyStoreKit: 6b9c08810269f030586dac1fae8e75871a82e84a
+  TenjinSDK: 3bb67f7ce97cdd246482dfc5aa6b18b035692763
 
-PODFILE CHECKSUM: 0efc06b6fdc25cf705d1678c53c2fd68e1ee47c3
+PODFILE CHECKSUM: d6fa10ca2d1af7091ce1ae3ce27bd0a0e53c5b27
 
 COCOAPODS: 1.9.1

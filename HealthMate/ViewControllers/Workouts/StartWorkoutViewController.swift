@@ -63,7 +63,7 @@ class StartWorkoutViewController: UIViewController {
         
         self.initLocal()
         self.setNavigationBar()
-        self.setGrayBackBarButton()
+        self.setBack()
         
         if UIScreen.main.nativeBounds.height <= 1136 {
             self.videoViewHeight.constant = 220
@@ -100,6 +100,24 @@ class StartWorkoutViewController: UIViewController {
         self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.timerExecution), userInfo: nil, repeats: true)
         self.timer.fire()
         self.videoPlay()
+    }
+    
+    func setBack() {
+        
+        let backButton : UIButton = UIButton()
+        backButton.setImage(UIImage(named: "Status-Bar-back Arrow-2"), for: UIControl.State())
+        backButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        backButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        backButton.addTarget(self, action: #selector(self.onBackTap), for: UIControl.Event.touchUpInside)
+        backButton.contentMode = .scaleAspectFit
+        backButton.imageWith(color: Color.appOrange, for: UIControl.State.normal)
+        let backBarButton = UIBarButtonItem(customView: backButton)
+        self.navigationItem.leftBarButtonItem = backBarButton
+    }
+    
+    @objc func onBackTap() {
+        
+        self.cancelWorkout()
     }
     
     func startTimer() {
@@ -234,7 +252,12 @@ class StartWorkoutViewController: UIViewController {
     }
     
     @IBAction func onCancelWorkoutButtonTap(_ sender: Any) {
-            
+        
+        self.cancelWorkout()
+    }
+    
+    func cancelWorkout() {
+        
         self.pauseTimer()
         let alert = UIAlertController(title: "\("Cancel_Workout".toLocalize())?", message: "Do_you_want_to_leave_and_cancel_this_workout".toLocalize(), preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Cancel_Workout".toLocalize(), style: UIAlertAction.Style.default, handler: { (action) in
@@ -244,7 +267,6 @@ class StartWorkoutViewController: UIViewController {
             self.startTimer()
         }))
         self.present(alert, animated: true, completion: nil)
-        
     }
     
     @IBAction func onPauseWorkoutTap(_ sender: Any) {

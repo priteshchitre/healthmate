@@ -176,5 +176,5 @@ class LoginViewController: UIViewController, ASAuthorizationControllerDelegate {
     @IBAction func onSkipButtonTap(_ sender: Any) {
         
         NotificationCenter.default.post(name: NSNotification.Name("MoveView"), object: nil)
-    }    
+    }
 }

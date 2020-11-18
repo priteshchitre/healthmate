@@ -1,0 +1,24 @@
+
+/* Class = "UILabel"; text = "What's your date of birth?"; ObjectID = "2KB-OK-4w5"; */
+"2KB-OK-4w5.text" = "What's your date of birth?";
+
+/* Class = "UILabel"; text = "Know what is in your food. \nMake better choices."; ObjectID = "Ku0-nQ-SbG"; */
+"Ku0-nQ-SbG.text" = "Know what is in your food. \nMake better choices.";
+
+/* Class = "UIButton"; normalTitle = "      Male"; ObjectID = "Mrv-kD-4mg"; */
+"Mrv-kD-4mg.normalTitle" = "      Male";
+
+/* Class = "UIButton"; normalTitle = "Get Started"; ObjectID = "NB3-ou-AQy"; */
+"NB3-ou-AQy.normalTitle" = "Get Started";
+
+/* Class = "UIButton"; normalTitle = "      Female"; ObjectID = "rrW-y3-QuG"; */
+"rrW-y3-QuG.normalTitle" = "      Female";
+
+/* Class = "UIButton"; normalTitle = "Continue"; ObjectID = "vcy-hN-3cl"; */
+"vcy-hN-3cl.normalTitle" = "Continue";
+
+/* Class = "UILabel"; text = "What's your Gender?"; ObjectID = "viB-aa-qxs"; */
+"viB-aa-qxs.text" = "What's your Gender?";
+
+/* Class = "UILabel"; text = "Reference site about Lorem Ipsum\ngiving information on its origins, as well\n as a random Lipsum generator."; ObjectID = "wsz-IQ-UE3"; */
+"wsz-IQ-UE3.text" = "Reference site about Lorem Ipsum\ngiving information on its origins, as well\n as a random Lipsum generator.";

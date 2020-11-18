@@ -1,0 +1,37 @@
+{
+    "data": [
+        {
+            "id": "1",
+            "title": "10-Minute Total Boy Workout",
+            "image":"https://cdn.videvo.net/videvo_files/video/premium/video0040/thumbnails/sattva49_small.jpg",
+            "cal":"44",
+            "duration": "9",
+            "level":"moderate",
+            "difficulty":"medium",
+            "description":"Everyone can set aside 10 minutes during the day, so you have no excuses not to fit this workout into your day. You don't need any fancy quipment, just your body weight and some space to move around.",
+            "workoutExercise":[
+                {
+                    "id":"1",
+                    "title":"T-Pushup",
+                    "video_url":"https://static.videezy.com/system/resources/previews/000/005/840/original/5.mp4",
+                    "duration":30,
+                    "calories":10
+                },
+                {
+                    "id":"2",
+                    "title":"Lunges",
+                    "video_url":"https://static.videezy.com/system/resources/previews/000/005/831/original/4.mp4",
+                    "duration":30,
+                    "calories":15
+                },
+                {
+                    "id":"3",
+                    "title":"Plank",
+                    "video_url":"https://dm0qx8t0i9gc9.cloudfront.net/watermarks/video/Vd3bj2jPe/videoblocks-fitness-girl-doing-pushups-exercise-at-workout-on-track-sport-woman-doing-push-ups-in-slow-motion-athletic-woman-training-hard-at-stadium_svivkxwth__602aa303d0a18198880de63c292984b6__P360.mp4",
+                    "duration":30,
+                    "calories":19
+                }
+            ]
+        }
+    ]
+}

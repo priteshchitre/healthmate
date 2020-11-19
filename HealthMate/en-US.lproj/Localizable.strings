@@ -157,7 +157,7 @@
 "logout_confirm_title" = "Are you sure you want to logout?";
 "logout_confirm_message" = "This action will delete all your information and tracked progress.";
 "Cancel" = "Cancel";
-"Setting" = "Setting";
+"Settings" = "Settings";
 "Gender" = "Gender";
 "Height" = "Height";
 "Activity" = "Activity";

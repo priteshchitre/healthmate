@@ -157,7 +157,7 @@
 "logout_confirm_title" = "Sei sicuro di voler uscire?";
 "logout_confirm_message" = "Questa azione eliminerà tutte le tue informazioni e i progressi registrati.";
 "Cancel" = "Annulla";
-"Setting" = "Ambientazione";
+"Settings" = "Impostazioni";
 "Gender" = "Genere";
 "Height" = "Altezza";
 "Activity" = "Attività";

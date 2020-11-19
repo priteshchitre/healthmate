@@ -19,6 +19,7 @@ class APIHelperClass: NSObject {
     static let activities : String                  = "activities"
     static let activitiesQuery : String             = "activities/query"
     static let config : String                      = "config"
+    static let signup : String                      = "auth/signup"
     
     var responseData : NSMutableData!
     var objectAFJSONResponseSerializer = AFJSONResponseSerializer(readingOptions: .allowFragments)

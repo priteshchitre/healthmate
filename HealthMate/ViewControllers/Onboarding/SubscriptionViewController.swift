@@ -279,19 +279,19 @@ class SubscriptionViewController: UIViewController {
     @IBAction func onContinueButtonTap(_ sender: Any) {
         
         if self.selectedPlan == .WEEKLY {
-            
+
             if UserClass.getWeeklySubscriptionId() == PLANS.WEEKLY_3DAYS_TRIAL.rawValue {
                 self.selectedPlan = .WEEKLY_3DAYS_TRIAL
             }
         }
         
-//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
-//            Global.openDashboard()
-//        }
-        
-        DispatchQueue.main.async {
-            self.purchase()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+            Global.openDashboard()
         }
+        
+//        DispatchQueue.main.async {
+//            self.purchase()
+//        }
     }
     
     func openPrivacyPage() {

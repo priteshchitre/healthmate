@@ -157,7 +157,7 @@
 "logout_confirm_title" = "Êtes-vous sûr de vouloir vous déconnecter?";
 "logout_confirm_message" = "Cette action supprimera toutes vos informations et les progrès suivis.";
 "Cancel" = "Annuler";
-"Setting" = "Réglage";
+"Settings" = "Réglages";
 "Gender" = "Le genre";
 "Height" = "la taille";
 "Activity" = "Activité";

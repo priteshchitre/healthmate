@@ -1169,7 +1169,7 @@ your health journey.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="xig-XP-bh1">
-                                <rect key="frame" x="20" y="199" width="335" height="18.666666666666657"/>
+                                <rect key="frame" x="20" y="199" width="335" height="19"/>
                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="16"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -1184,7 +1184,7 @@ your health journey.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iIW-MH-DEl">
-                                <rect key="frame" x="20" y="247.66666666666663" width="335" height="130"/>
+                                <rect key="frame" x="20" y="248" width="335" height="130"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pdY-ar-CSS">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="60"/>
@@ -1199,7 +1199,7 @@ your health journey.</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$9.99/month. Cancel anytime." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Rd5-lP-BNq">
-                                                <rect key="frame" x="8" y="28.000000000000028" width="319" height="28"/>
+                                                <rect key="frame" x="8" y="28" width="319" height="28"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="16"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -1228,7 +1228,7 @@ your health journey.</string>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nsn-zo-4OA">
-                                        <rect key="frame" x="0.0" y="70.000000000000028" width="335" height="60"/>
+                                        <rect key="frame" x="0.0" y="70" width="335" height="60"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yearly" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Deh-Kd-pw6">
                                                 <rect key="frame" x="8" y="4" width="319" height="20"/>
@@ -1295,7 +1295,7 @@ your health journey.</string>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="enM-l6-DQ4">
-                                <rect key="frame" x="-2" y="392.66666666666669" width="379" height="50"/>
+                                <rect key="frame" x="-2" y="393" width="379" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trial period" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.30000001192092896" translatesAutoresizingMaskIntoConstraints="NO" id="908-lq-u2G">
                                         <rect key="frame" x="20" y="4" width="282" height="21"/>
@@ -1307,7 +1307,7 @@ your health journey.</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not sure yet? Enable free trial." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.30000001192092896" translatesAutoresizingMaskIntoConstraints="NO" id="HMl-fV-qei">
-                                        <rect key="frame" x="20" y="14.666666666666629" width="282" height="21"/>
+                                        <rect key="frame" x="20" y="14.666666666666686" width="282" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="CCL-cH-Xlf"/>
                                         </constraints>
@@ -1354,7 +1354,7 @@ your health journey.</string>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I1i-oh-Gxl">
-                                <rect key="frame" x="20" y="247.66666666666663" width="335" height="130"/>
+                                <rect key="frame" x="20" y="248" width="335" height="130"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First 7 days free, than $3.99/weekly. No commitment. Cancel anytime." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gbL-t0-rxd">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="130"/>
@@ -2809,7 +2809,7 @@ of Encouragement to start your
                                                                 <constraint firstAttribute="height" constant="80" id="9Sy-bN-SYj"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MYM-Su-1qR">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MYM-Su-1qR">
                                                             <rect key="frame" x="98" y="10" width="164" height="40"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="Khi-zC-D4L"/>
@@ -2841,24 +2841,23 @@ workout</string>
                                                                         <constraint firstAttribute="height" constant="20" id="vfK-8F-KUQ"/>
                                                                     </constraints>
                                                                 </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15 cal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z6r-6a-ipj">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="15 cal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="z6r-6a-ipj">
                                                                     <rect key="frame" x="22" y="2.6666666666666714" width="60" height="25"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="25" id="2yC-Xq-9gO"/>
-                                                                        <constraint firstAttribute="width" constant="60" id="GZ4-rD-Bcz"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="16"/>
                                                                     <color key="textColor" red="0.77647058823529413" green="0.77647058823529413" blue="0.76862745098039209" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="time" translatesAutoresizingMaskIntoConstraints="NO" id="2B2-dF-abU">
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="time" translatesAutoresizingMaskIntoConstraints="NO" id="2B2-dF-abU">
                                                                     <rect key="frame" x="86" y="5" width="20" height="20"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="20" id="KmV-ko-B7W"/>
                                                                         <constraint firstAttribute="width" constant="20" id="fLi-TZ-yBB"/>
                                                                     </constraints>
                                                                 </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 min" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iEi-sP-fKq">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="10 min" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="iEi-sP-fKq">
                                                                     <rect key="frame" x="108" y="2.6666666666666714" width="109" height="25"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="25" id="zYR-q1-daI"/>
@@ -4114,7 +4113,7 @@ workout</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4 SERVINGS" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="bu6-ps-ZQT">
-                                                    <rect key="frame" x="141.33333333333334" y="10" width="92.333333333333343" height="20"/>
+                                                    <rect key="frame" x="143" y="10" width="89.333333333333314" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="xgB-TM-AOw"/>
                                                     </constraints>
@@ -4191,14 +4190,14 @@ workout</string>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qeD-S9-oui">
-                                                    <rect key="frame" x="19.999999999999993" y="19" width="113.33333333333331" height="1"/>
+                                                    <rect key="frame" x="20" y="19" width="115" height="1"/>
                                                     <color key="backgroundColor" red="0.77647058823529413" green="0.77647058823529413" blue="0.76862745098039209" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="j8N-w5-dQb"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gxs-an-yZQ">
-                                                    <rect key="frame" x="241.66666666666666" y="19" width="113.33333333333334" height="1"/>
+                                                    <rect key="frame" x="240.33333333333334" y="19" width="114.66666666666666" height="1"/>
                                                     <color key="backgroundColor" red="0.77647058823529413" green="0.77647058823529413" blue="0.76862745098039209" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="eld-c6-pfe"/>
@@ -4248,7 +4247,7 @@ workout</string>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tVJ-YS-LVd">
                                                     <rect key="frame" x="20" y="10" width="335" height="145"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="160 Total Calories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aJx-Oz-ZYf">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="160 Total Calories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="aJx-Oz-ZYf">
                                                             <rect key="frame" x="8" y="8" width="319" height="25"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="25" id="5K8-6r-gwO"/>
@@ -4380,7 +4379,7 @@ workout</string>
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredients" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0oU-v7-VF8">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredients" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0oU-v7-VF8">
                                                     <rect key="frame" x="20" y="10" width="335" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="N49-Bz-Chu"/>
@@ -4525,7 +4524,7 @@ workout</string>
                                                                 <constraint firstAttribute="width" constant="80" id="uRy-KI-jvG"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NXL-YO-WNa">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="NXL-YO-WNa">
                                                             <rect key="frame" x="98" y="10" width="164" height="47"/>
                                                             <string key="text">10 minute total body
 workout</string>
@@ -4533,7 +4532,7 @@ workout</string>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Level: Moderate" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wDm-q2-BFt">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Level: Moderate" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="wDm-q2-BFt">
                                                             <rect key="frame" x="98" y="65" width="227" height="25"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="25" id="Boy-31-Xfo"/>
@@ -4762,7 +4761,7 @@ workout</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 minute total body workout" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IkH-ir-RuU">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 minute total body workout" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="IkH-ir-RuU">
                                 <rect key="frame" x="20" y="84" width="335" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="d7y-Vc-c12"/>
@@ -4807,7 +4806,7 @@ workout</string>
                                     <constraint firstAttribute="height" constant="300" id="yMc-aR-k2Y"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nwx-Vl-6cn">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="nwx-Vl-6cn">
                                 <rect key="frame" x="20" y="464" width="335" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="ZBZ-MD-gh6"/>
@@ -4844,7 +4843,7 @@ workout</string>
                                     <action selector="onPauseWorkoutTap:" destination="uX6-lE-AhG" eventType="touchUpInside" id="wqC-TJ-bWt"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 1 of 9" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tbh-Eg-rDJ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 1 of 9" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="tbh-Eg-rDJ">
                                 <rect key="frame" x="20" y="502" width="335" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="Zmp-lg-DkK"/>
@@ -5294,7 +5293,7 @@ workout</string>
                                                         <constraint firstItem="Xfo-Ya-MAT" firstAttribute="leading" secondItem="C7e-in-GT1" secondAttribute="leading" constant="10" id="y9E-26-O6x"/>
                                                     </constraints>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m5f-SC-cvj">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="m5f-SC-cvj">
                                                     <rect key="frame" x="20" y="147" width="335" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="bdG-fq-Apn"/>

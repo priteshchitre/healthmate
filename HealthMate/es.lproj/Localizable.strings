@@ -157,7 +157,7 @@
 "logout_confirm_title" = "Estás seguro de que quieres cerrar sesión?";
 "logout_confirm_message" = "Esta acción eliminará toda su información y seguimiento del progreso.";
 "Cancel" = "Cancelar";
-"Setting" = "Ajuste";
+"Settings" = "Configuraciones";
 "Gender" = "Género";
 "Height" = "Altura";
 "Activity" = "Actividad";

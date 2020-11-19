@@ -24,6 +24,7 @@ struct Constants {
     static let TENJIN_KEY = "CDSXTDAMB7LWROYV1AWX5CFC3TUWLTWV"
     static let FLURRY_KEY = "HVQ3NJ9W94664JRK6MMR"
     static let ONESIGNAL_API_KEY = "acbeea84-9b2f-4220-a94a-43c52fd48c4e"
+    static let REVENUE_CAT_KEY = "hsfIfCgNiRKLnGgencxBjjVEqnGEkFue"
     
     static let LOCAL_DASHBOARD = "LocalDashboard"
     static let LOCAL_SUBSCRIPTION = "LocalSubscription"

@@ -177,4 +177,36 @@ class LoginViewController: UIViewController, ASAuthorizationControllerDelegate {
         
         NotificationCenter.default.post(name: NSNotification.Name("MoveView"), object: nil)
     }
+    
+    func register() {
+        
+        if !Global.checkNetworkConnectivity() {
+            return
+        }
+        
+        let param : NSMutableDictionary = [
+            "fullname": UserClass.getName(),
+            "email": UserClass.getEmail(),
+            "idfa": "30255BCE-4CDA-4F62-91DC-4758FDFF8512",
+            "device": "iPhone",
+            "deviceModel": "6S",
+            "os": "ios",
+            "osVersion": "12.4.1"
+        ]
+        
+        Global.showProgressHud()
+        
+        APIHelperClass.sharedInstance.postRequest("\(APIHelperClass.signup)", parameters: param) { (result, error, statusCode) in
+
+            DispatchQueue.main.async {
+                Global.hideProgressHud()
+            }
+            
+            if statusCode == 200 {
+                if let dataDic = result {
+                    
+                }
+            }
+        }
+    }
 }

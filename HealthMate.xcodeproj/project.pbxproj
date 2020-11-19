@@ -980,7 +980,7 @@
 				CODE_SIGN_ENTITLEMENTS = HealthMate/HealthMate.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development: Pritesh Chitre (U5XD7L55ZC)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 3SJD5H99YV;
 				INFOPLIST_FILE = HealthMate/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -990,7 +990,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.acodecreative.healthmate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "HealthMate Pritesh AppStore Profile";
+				PROVISIONING_PROFILE_SPECIFIER = "HealthMate Pritesh Development Profile";
 				SWIFT_OBJC_BRIDGING_HEADER = "HealthMate/HealthMate-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1008,7 +1008,7 @@
 				CODE_SIGN_ENTITLEMENTS = HealthMate/HealthMate.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development: Pritesh Chitre (U5XD7L55ZC)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 3SJD5H99YV;
 				INFOPLIST_FILE = HealthMate/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1018,7 +1018,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.acodecreative.healthmate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "HealthMate Pritesh AppStore Profile";
+				PROVISIONING_PROFILE_SPECIFIER = "HealthMate Pritesh Development Profile";
 				SWIFT_OBJC_BRIDGING_HEADER = "HealthMate/HealthMate-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

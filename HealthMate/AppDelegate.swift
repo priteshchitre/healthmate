@@ -11,6 +11,7 @@ import FBSDKCoreKit
 import Foundation
 import Flurry_iOS_SDK
 import OneSignal
+import Purchases
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, FlurryMessagingDelegate {
@@ -19,33 +20,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FlurryMessagingDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
         IQKeyboardManager.shared().isEnableAutoToolbar = false
         IQKeyboardManager.shared().isEnabled = false
+        
         if #available(iOS 13.0, *) {
             window!.overrideUserInterfaceStyle = .light
         }
         
+        //TenjinSDK
         TenjinSDK.getInstance(Constants.TENJIN_KEY)
         TenjinSDK.connect()
         
+        //OneSignalSDK
         OneSignal.setLogLevel(.LL_VERBOSE, visualLevel: .LL_NONE)
-        
         let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false, kOSSettingsKeyInAppLaunchURL: false]
-        
         OneSignal.initWithLaunchOptions(launchOptions,
                                         appId: Constants.ONESIGNAL_API_KEY,
                                         handleNotificationAction: nil,
                                         settings: onesignalInitSettings)
-        
         OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification;
+            
+        //RevenueCatSDK
+        Purchases.debugLogsEnabled = true
+        Purchases.configure(withAPIKey: Constants.REVENUE_CAT_KEY)
         
-        // promptForPushNotifications will show the native iOS notification permission prompt.
-        // We recommend removing the following code and instead using an In-App Message to prompt for notification permission (See step 8)
+//        Purchases.configure(withAPIKey: Constants.REVENUE_CAT_KEY, appUserID: "", observerMode: true)
         
-        
-        // FlurryMessaging.setAutoIntegrationForMessaging()
+        //FlurrySDK
         FlurryMessaging.setMessagingDelegate(self)
-        
         Flurry.startSession(Constants.FLURRY_KEY, with: FlurrySessionBuilder
                                 .init()
                                 .withIAPReportingEnabled(true)
@@ -54,6 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FlurryMessagingDelegate {
                                 .withIncludeBackgroundSessions(inMetrics: true))
         
         self.setupIAP()
+        self.setOldSubscriptionForRevenueCat()
         
         //Facebook
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -82,7 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FlurryMessagingDelegate {
         else {
             Global.openGetStarted()
         }
-        
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         
         return true
     }
@@ -193,5 +197,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FlurryMessagingDelegate {
                 UserClass.setDaysFree(AnyObjectRef(result?.value(forKey: "daysFree") as AnyObject).intValue())
             }
         }
+    }
+    
+    func setOldSubscriptionForRevenueCat() {
+        
+        
+        Purchases.shared.purchaserInfo { (purchaserInfo, error) in
+                
+            print("purchaserInfo = ", purchaserInfo ?? "")
+            print("error = ", error ?? "")
+            
+            if let purchaserInfo1 = purchaserInfo {
+                
+                if UserClass.isUserSubscribe() && purchaserInfo1.entitlements.active.isEmpty {
+                    
+                    Purchases.shared.restoreTransactions { (purchaserInfo2, error) in
+                        
+                        print("error = ", error ?? "")
+                        print("purchaserInfo2 = ", purchaserInfo2 ?? "")
+                        
+                    }
+                }
+            }
+        }
+    }
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        
+        Global.addSubscriptionNotification()
+    }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        Global.addSubscriptionNotification()
+    }
+    
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
 }

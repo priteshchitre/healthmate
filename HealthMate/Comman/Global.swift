@@ -348,6 +348,54 @@ class Global: NSObject {
         }
         return ""
     }
+    
+    class func getCountryCode() -> String {
+    
+        var country : String = ""
+        
+        if let countryCode = (Locale.current as NSLocale).object(forKey: NSLocale.Key.countryCode) as? String {
+            country = countryCode
+        }
+        return country
+    }
+    
+    class func getDeviceVersion() -> String {
+        
+        return UIDevice.current.systemVersion
+    }
+    
+    class func getDeviceModelName() -> String {
+        
+        return UIDevice.modelName
+    }
+    
+    class func addSubscriptionNotification() {
+        
+        if !UserClass.isUserSubscribe() {
+            
+            if UserClass.isSubscribeScreen() {
+                UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                let notificationDate = Date().addingTimeInterval(TimeInterval(10))
+                let component = Calendar.current.dateComponents([.year,.day,.month,.hour,.minute,.second], from: notificationDate)
+                let title = "\("Just_try_the_app_7_days_for_FREE".toLocalize())!🎁 :"
+                let body = "\(UserClass.getName()), \("why_havent_you_started_a_free_trial".toLocalize())❓"
+                Global.scheduleNotification(title, body: body, dateComponent: component, isRepeat: false, identifier: "reminder-1")
+            }
+        }
+    }
+    
+    class func scheduleNotification(_ title : String, body: String, dateComponent : DateComponents, isRepeat : Bool, identifier : String) {
+        
+        let content      = UNMutableNotificationContent()
+        content.title    = title
+        content.body = body
+        content.sound    = .default
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponent, repeats: isRepeat)
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request) { error in
+            guard error == nil else { return }
+        }
+    }
 }
 public enum Result<T> {
     case success(T)

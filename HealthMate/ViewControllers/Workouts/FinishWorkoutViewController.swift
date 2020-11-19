@@ -34,7 +34,7 @@ class FinishWorkoutViewController: UIViewController {
         self.tableView.rowHeight = UITableView.automaticDimension
         
         let str1 = "You_just_burned".toLocalize()
-        let str2 = self.object.calorie.toString()
+        let str2 = self.object.calorie.toRound()
         let str3 = "calories".toLocalize()
         
         self.topLabel.text = "\(str1)\n\(str2)\n\(str3)"
@@ -101,7 +101,7 @@ extension FinishWorkoutViewController : UITableViewDelegate, UITableViewDataSour
         let label = cell.viewWithTag(100) as! UILabel
         let calorieLabel = cell.viewWithTag(101) as! UILabel
         label.text = self.object.workoutExerciseArray[indexPath.row].title
-        calorieLabel.text = "\(self.object.workoutExerciseArray[indexPath.row].calorie.toString()) \("calories".toLocalize())"
+        calorieLabel.text = "\(self.object.workoutExerciseArray[indexPath.row].calorie.toRound()) \("calories".toLocalize())"
         return cell
     }
 }

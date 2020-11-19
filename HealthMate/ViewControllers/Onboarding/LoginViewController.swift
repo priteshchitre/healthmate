@@ -9,6 +9,7 @@ import UIKit
 import AuthenticationServices
 import FBSDKLoginKit
 import FBSDKCoreKit
+import Purchases
 
 class LoginViewController: UIViewController, ASAuthorizationControllerDelegate {
     
@@ -62,6 +63,8 @@ class LoginViewController: UIViewController, ASAuthorizationControllerDelegate {
             self.appleView.isHidden = true
             self.appleViewTop.constant = 0
         }
+        self.nameTextField.delegate = self
+        self.emailTextField.delegate = self
     }
     
     func setUpSignInAppleButton() {
@@ -104,7 +107,8 @@ class LoginViewController: UIViewController, ASAuthorizationControllerDelegate {
                 UserClass.setEmail(str)
             }
             UserClass.setAppleUserId(userIdentifier)
-            NotificationCenter.default.post(name: NSNotification.Name("OpenCreatingProfileView"), object: nil)
+            self.register()
+            //NotificationCenter.default.post(name: NSNotification.Name("OpenCreatingProfileView"), object: nil)
         }
     }
     
@@ -130,7 +134,8 @@ class LoginViewController: UIViewController, ASAuthorizationControllerDelegate {
         UserClass.setName((self.nameTextField.text?.trimmed())!)
         UserClass.setEmail((self.emailTextField.text?.trimmed())!)
         self.view.endEditing(true)
-        NotificationCenter.default.post(name: NSNotification.Name("OpenCreatingProfileView"), object: nil)
+        self.register()
+//        NotificationCenter.default.post(name: NSNotification.Name("OpenCreatingProfileView"), object: nil)
     }
     
     @IBAction func onFacebookButtonTap(_ sender: Any) {
@@ -168,7 +173,8 @@ class LoginViewController: UIViewController, ASAuthorizationControllerDelegate {
                         }
                     }
                 }
-                NotificationCenter.default.post(name: NSNotification.Name("OpenCreatingProfileView"), object: nil)
+                self.register()
+                //NotificationCenter.default.post(name: NSNotification.Name("OpenCreatingProfileView"), object: nil)
             }
         }
     }
@@ -187,11 +193,11 @@ class LoginViewController: UIViewController, ASAuthorizationControllerDelegate {
         let param : NSMutableDictionary = [
             "fullname": UserClass.getName(),
             "email": UserClass.getEmail(),
-            "idfa": "30255BCE-4CDA-4F62-91DC-4758FDFF8512",
-            "device": "iPhone",
-            "deviceModel": "6S",
+            "idfa": Global.getUniqueId(),
+            "device": UIDevice.current.userInterfaceIdiom == .pad ? "iPad" : "iPhone",
+            "deviceModel": Global.getDeviceModelName(),
             "os": "ios",
-            "osVersion": "12.4.1"
+            "osVersion": Global.getDeviceVersion()
         ]
         
         Global.showProgressHud()
@@ -201,12 +207,31 @@ class LoginViewController: UIViewController, ASAuthorizationControllerDelegate {
             DispatchQueue.main.async {
                 Global.hideProgressHud()
             }
-            
-            if statusCode == 200 {
-                if let dataDic = result {
-                    
+            if let dataDic = result {
+                
+                if let userId = dataDic.value(forKey: "userId") as? String {
+                    UserClass.setUserId(userId)
                 }
             }
+            Purchases.shared.identify(UserClass.getUserId()) { (purchaseInfo, error) in
+                print("purchaseInfo = ",purchaseInfo ?? "")
+                print("error = ", error ?? "")
+            }
+            NotificationCenter.default.post(name: NSNotification.Name("OpenCreatingProfileView"), object: nil)
         }
+    }
+}
+extension LoginViewController : UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+
+        if self.nameTextField == textField {
+            
+            self.emailTextField.becomeFirstResponder()
+        }
+        else if self.emailTextField == textField {
+            textField.resignFirstResponder()
+        }
+        return true
     }
 }

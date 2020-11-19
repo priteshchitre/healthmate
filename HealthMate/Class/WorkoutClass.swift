@@ -74,7 +74,7 @@ class WorkoutExerciseClass: NSObject {
         
         let caloriesBurnPerHour = UserClass.getWeight() * object.met
         let second = Float(object.duration) / Float(3600)
-        object.calorie = caloriesBurnPerHour * second
+        object.calorie = Float(Int(ceilf(caloriesBurnPerHour * second)))
         return object
     }
     

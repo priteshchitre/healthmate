@@ -140,7 +140,7 @@ extension ExerciseCaloriesListViewController : UITableViewDelegate, UITableViewD
             
             if self.isMyFood {
                 cell.titleLabel.text = object.name
-                cell.caloriesLabel.text = "\(object.calorie.toString()) \("calories".toLocalize())"
+                cell.caloriesLabel.text = "\(object.calorie.toRound()) \("calories".toLocalize())"
             }
             else {
                 
@@ -151,7 +151,7 @@ extension ExerciseCaloriesListViewController : UITableViewDelegate, UITableViewD
                     cell.titleLabel.text = object.name
                 }
                 let totalCalories = self.todayBurnedDataArray[indexPath.row].calories
-                cell.caloriesLabel.text = "\(totalCalories.toString()) \("calories".toLocalize())"
+                cell.caloriesLabel.text = "\(totalCalories.toRound()) \("calories".toLocalize())"
             }
             return cell
         }

@@ -79,7 +79,7 @@ extension CustomExerciseViewController : UITableViewDelegate, UITableViewDataSou
             let object = self.dataArray[indexPath.row]
             cell.bgView.layer.addCustomShadow()
             cell.titleLabel.text = object.name
-            cell.caloriesLabel.text = "\(object.calorie.toString()) \("calories_per_hour".toLocalize())"
+            cell.caloriesLabel.text = "\(object.calorie.toRound()) \("calories_per_hour".toLocalize())"
             return cell
         }
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "NoDataCell", for: indexPath) as! FoodListCell

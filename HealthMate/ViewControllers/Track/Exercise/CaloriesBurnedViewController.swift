@@ -62,7 +62,7 @@ class CaloriesBurnedViewController: UIViewController {
         self.nameTextField.text = self.exerciseObject.name
         
         if self.exerciseObject.calorie != 0 {
-            self.caloriesTextField.text = "\(self.exerciseObject.calorie.toString())"
+            self.caloriesTextField.text = "\(self.exerciseObject.calorie.toRound())"
         }
     }
     

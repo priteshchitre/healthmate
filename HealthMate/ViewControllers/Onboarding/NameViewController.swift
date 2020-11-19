@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Purchases
 
 class NameViewController: UIViewController {
     
@@ -92,6 +93,10 @@ class NameViewController: UIViewController {
         }
         UserClass.setName((self.inputTextField.text?.trimmed())!)
         self.view.endEditing(true)
+        Purchases.shared.identify(UserClass.getUserId()) { (purchaseInfo, error) in
+            print("purchaseInfo = ",purchaseInfo ?? "")
+            print("error = ", error ?? "")
+        }
         NotificationCenter.default.post(name: NSNotification.Name("OpenCreatingProfileView"), object: nil)
     }
 }

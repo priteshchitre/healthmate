@@ -159,13 +159,13 @@ extension ExerciseCaloriesDetailsViewController : UITableViewDelegate, UITableVi
             cell.bgView.layer.addCustomShadow()
             cell.titleLabel.text = self.exerciseObject.name
             if self.exerciseObject.isCustomExercise {
-                cell.sizeLabel.text = "\(self.exerciseObject.calorie.toString()) \("calories_per_hour".toLocalize())"
+                cell.sizeLabel.text = "\(self.exerciseObject.calorie.toRound()) \("calories_per_hour".toLocalize())"
             }
             else if self.exerciseObject.isSearchExercise {
-                cell.sizeLabel.text = "\(self.activityObject.burnedCalories.toString()) \("calories".toLocalize()) \("per".toLocalize()) \(self.activityObject.durationMin) \("minutes".toLocalize())"
+                cell.sizeLabel.text = "\(self.activityObject.burnedCalories.toRound()) \("calories".toLocalize()) \("per".toLocalize()) \(self.activityObject.durationMin) \("minutes".toLocalize())"
             }
             else {
-                cell.sizeLabel.text = "\(self.exerciseObject.calorie.toString()) \("calories".toLocalize())"
+                cell.sizeLabel.text = "\(self.exerciseObject.calorie.toRound()) \("calories".toLocalize())"
             }
             
             return cell
@@ -209,7 +209,7 @@ extension ExerciseCaloriesDetailsViewController : UITableViewDelegate, UITableVi
         }
         
         let str1 = "Total_Calories".toLocalize()
-        let str2 = "-\(totalCalories.toString())"
+        let str2 = "-\(totalCalories.toRound())"
         cell.totalCalories.text = "\(str1) \(str2)"
         
         let attr1 = NSMutableAttributedString(string: cell.totalCalories.text!)

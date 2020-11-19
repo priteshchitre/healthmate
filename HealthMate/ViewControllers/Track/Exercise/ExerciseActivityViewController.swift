@@ -58,7 +58,7 @@ extension ExerciseActivityViewController : UITableViewDelegate, UITableViewDataS
         let subTitleLabel = cell.viewWithTag(102) as! UILabel
         bgView.layer.addCustomShadow()
         titleLabel.text = object.name.capitalized
-        subTitleLabel.text = "\(object.burnedCalories.toString()) \("calories".toLocalize()) \("per".toLocalize()) \(object.durationMin) \("minutes".toLocalize())"
+        subTitleLabel.text = "\(object.burnedCalories.toRound()) \("calories".toLocalize()) \("per".toLocalize()) \(object.durationMin) \("minutes".toLocalize())"
         return cell
     }
     

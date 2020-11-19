@@ -285,13 +285,13 @@ class SubscriptionViewController: UIViewController {
             }
         }
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
-            Global.openDashboard()
-        }
-        
-//        DispatchQueue.main.async {
-//            self.purchase()
+//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+//            Global.openDashboard()
 //        }
+        
+        DispatchQueue.main.async {
+            self.purchase()
+        }
     }
     
     func openPrivacyPage() {

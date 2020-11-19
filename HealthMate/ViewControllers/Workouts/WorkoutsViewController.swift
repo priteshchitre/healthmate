@@ -114,7 +114,7 @@ extension WorkoutsViewController : UITableViewDelegate, UITableViewDataSource {
         cell.statusLabel.layer.cornerRadius = 3
         let object = Global.sharedInstance.workoutArray[indexPath.row]
         
-        cell.calLabel.text = "\(object.calorie.toString()) \("cal".toLocalize())"
+        cell.calLabel.text = "\(object.calorie.toRound()) \("cal".toLocalize())"
         cell.minLabel.text = "\(object.duration) \("min".toLocalize())"
         cell.statusLabel.text = object.difficulty.capitalized
         cell.titleLabel.text = object.title

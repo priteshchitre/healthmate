@@ -823,7 +823,7 @@ your health journey.</string>
                                     <constraint firstAttribute="height" constant="50" id="j4t-ZW-Ogq"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aNF-b3-aMr" customClass="SquareTextField" customModule="HealthMate" customModuleProvider="target">
                                 <rect key="frame" x="20" y="284" width="335" height="50"/>
@@ -831,7 +831,7 @@ your health journey.</string>
                                     <constraint firstAttribute="height" constant="50" id="3Ey-TB-Tox"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="done"/>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bfO-vl-UaI">
                                 <rect key="frame" x="20" y="450" width="335" height="50"/>

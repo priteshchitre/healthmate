@@ -360,13 +360,16 @@ class Global: NSObject {
     }
     
     class func getDeviceVersion() -> String {
-        
         return UIDevice.current.systemVersion
     }
     
     class func getDeviceModelName() -> String {
         
         return UIDevice.modelName
+    }
+    
+    class func getUniqueId() -> String {
+        return UIDevice.current.identifierForVendor?.uuidString ?? ""
     }
     
     class func addSubscriptionNotification() {

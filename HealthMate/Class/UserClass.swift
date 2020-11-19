@@ -10,6 +10,23 @@ import UIKit
 
 class UserClass: NSObject {
     
+    class func setUserId(_ value : String) {
+        UserDefaults.standard.setValue(value, forKey: "userId")
+        UserDefaults.standard.synchronize()
+    }
+    
+    class func getUserId() -> String {
+        
+        var value : String = ""
+        if  UserDefaults.standard.object(forKey: "userId") != nil {
+            value = UserDefaults.standard.string(forKey: "userId") ?? ""
+        }
+        if value == "" {
+            value = Global.getUniqueId()
+        }
+        return value
+    }
+    
     class func setSubscriptionConfig(_ value : Int) {
         UserDefaults.standard.setValue(value, forKey: "subscriptionConfig")
         UserDefaults.standard.synchronize()
@@ -420,6 +437,7 @@ class UserClass: NSObject {
     
     class func resetUser() {
     
+        UserClass.setUserId("")
         UserClass.setIsLogin(false)
         UserClass.setWeekly3DaysSubscription(false)
         UserClass.setWeeklySubscription(false)

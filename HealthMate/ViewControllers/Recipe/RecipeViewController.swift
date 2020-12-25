@@ -211,7 +211,7 @@ extension RecipeViewController : UITableViewDelegate, UITableViewDataSource {
             let cell = self.tableView.dequeueReusableCell(withIdentifier: "RecipeCell", for: indexPath) as! RecipeListCell
             let object = self.dataArray[indexPath.row]
             cell.recipeTitleLabel.text = object.title
-            cell.recipeImageView.sd_setImage(with: URL(string: object.image)!, placeholderImage: UIImage(named: "recipePlaceholder"), options: SDWebImageOptions.continueInBackground, context: nil)
+            cell.recipeImageView.sd_setImage(with: URL(string: object.image), placeholderImage: UIImage(named: "recipePlaceholder"), options: SDWebImageOptions.continueInBackground, context: nil)
             cell.seringLabel.text = "\(object.calorie.toString()) cal/\("servings".toLocalize()), \("serve".toLocalize()) \(object.serve)"
             return cell
         }

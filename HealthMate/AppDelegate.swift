@@ -28,11 +28,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FlurryMessagingDelegate {
             window!.overrideUserInterfaceStyle = .light
         }
         
-        //TenjinSDK
+        // TenjinSDK
         TenjinSDK.getInstance(Constants.TENJIN_KEY)
         TenjinSDK.connect()
         
-        //OneSignalSDK
+        // OneSignalSDK
         OneSignal.setLogLevel(.LL_VERBOSE, visualLevel: .LL_NONE)
         let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false, kOSSettingsKeyInAppLaunchURL: false]
         OneSignal.initWithLaunchOptions(launchOptions,
@@ -41,11 +41,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FlurryMessagingDelegate {
                                         settings: onesignalInitSettings)
         OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification;
             
-        //RevenueCatSDK
+        // RevenueCatSDK
         Purchases.debugLogsEnabled = true
-        Purchases.configure(withAPIKey: Constants.REVENUE_CAT_KEY)
+        // Purchases.configure(withAPIKey: Constants.REVENUE_CAT_KEY)
         
-//        Purchases.configure(withAPIKey: Constants.REVENUE_CAT_KEY, appUserID: "", observerMode: true)
+        Purchases.configure(withAPIKey: Constants.REVENUE_CAT_KEY, appUserID: nil, observerMode: true)
         
         //FlurrySDK
         FlurryMessaging.setMessagingDelegate(self)
@@ -57,9 +57,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FlurryMessagingDelegate {
                                 .withIncludeBackgroundSessions(inMetrics: true))
         
         self.setupIAP()
-        self.setOldSubscriptionForRevenueCat()
         
-        //Facebook
+        // Facebook
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
         if !Global.isAppLanguageSet() {
@@ -193,31 +192,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FlurryMessagingDelegate {
             
             if statusCode == 200 {
                 UserClass.setSubscriptionConfig(AnyObjectRef(result?.value(forKey: "storeScreenVariant") as AnyObject).intValue())
-                UserClass.setWeeklySubscriptionId(AnyObjectRef(result?.value(forKey: "storeScreenVariant") as AnyObject).stringValue())
+                UserClass.setWeeklySubscriptionId(AnyObjectRef(result?.value(forKey: "weeklySubscriptionId") as AnyObject).stringValue())
                 UserClass.setDaysFree(AnyObjectRef(result?.value(forKey: "daysFree") as AnyObject).intValue())
-            }
-        }
-    }
-    
-    func setOldSubscriptionForRevenueCat() {
-        
-        
-        Purchases.shared.purchaserInfo { (purchaserInfo, error) in
-                
-            print("purchaserInfo = ", purchaserInfo ?? "")
-            print("error = ", error ?? "")
-            
-            if let purchaserInfo1 = purchaserInfo {
-                
-                if UserClass.isUserSubscribe() && purchaserInfo1.entitlements.active.isEmpty {
-                    
-                    Purchases.shared.restoreTransactions { (purchaserInfo2, error) in
-                        
-                        print("error = ", error ?? "")
-                        print("purchaserInfo2 = ", purchaserInfo2 ?? "")
-                        
-                    }
-                }
             }
         }
     }

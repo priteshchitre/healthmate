@@ -41,4 +41,37 @@ class IAPHelper: NSObject {
         }
     }
     
+    class func isTrial(productId : String, completionHandler:@escaping (Bool)->())->(){
+        
+        let appleValidator = AppleReceiptValidator(service: AppleReceiptValidator.VerifyReceiptURLType.production, sharedSecret: Constants.SHARED_SECRET_KEY)
+        SwiftyStoreKit.verifyReceipt(using: appleValidator) { (result) in
+            
+            var isTrialPeriod = false
+            
+            if case .success(let receipt) = result {
+                
+                let purchaseResult = SwiftyStoreKit.verifySubscription(ofType: SubscriptionType.autoRenewable, productId: productId, inReceipt: receipt)
+                
+                switch purchaseResult {
+                case .purchased( _, let recipetItem):
+                    if let mostRecent = recipetItem.first {
+                        isTrialPeriod = mostRecent.isTrialPeriod
+                    }
+                    completionHandler(isTrialPeriod)
+                case .expired( _, let recipetItem):
+                    if let mostRecent = recipetItem.first {
+                        isTrialPeriod = mostRecent.isTrialPeriod
+                    }
+                    completionHandler(isTrialPeriod)
+                case .notPurchased:
+                    print("This product has never been purchased")
+                    completionHandler(isTrialPeriod)
+                }
+            }
+            else {
+                completionHandler(isTrialPeriod)
+            }
+        }
+    }
+    
 }

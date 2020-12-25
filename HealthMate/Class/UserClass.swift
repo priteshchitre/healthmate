@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Purchases
 
 class UserClass: NSObject {
     
@@ -16,14 +17,17 @@ class UserClass: NSObject {
     }
     
     class func getUserId() -> String {
-        
         var value : String = ""
         if  UserDefaults.standard.object(forKey: "userId") != nil {
             value = UserDefaults.standard.string(forKey: "userId") ?? ""
         }
+
+        // Generate random one and sync it in local storage
         if value == "" {
-            value = Global.getUniqueId()
+            value = UUID().uuidString
+            UserClass.setUserId(value)
         }
+
         return value
     }
     
@@ -436,7 +440,9 @@ class UserClass: NSObject {
     }
     
     class func resetUser() {
-    
+        
+        UserClass.setName("")
+        UserClass.setEmail("")
         UserClass.setUserId("")
         UserClass.setIsLogin(false)
         UserClass.setWeekly3DaysSubscription(false)
@@ -450,5 +456,10 @@ class UserClass: NSObject {
         Global.removeFileDetails("exercise")
         Global.removeFileDetails("waterData")
         Global.removeFileDetails("weightData")
+
+        Purchases.shared.reset() { (purchaseInfo, error) in
+            print("purchaseInfo = ",purchaseInfo ?? "")
+            print("error = ", error ?? "")
+        }
     }
 }

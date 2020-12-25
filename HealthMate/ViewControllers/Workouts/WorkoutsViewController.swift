@@ -13,6 +13,7 @@ class WorkoutsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var refreshControl : UIRefreshControl = UIRefreshControl()
+    var dataArray = NSArray()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +21,15 @@ class WorkoutsViewController: UIViewController {
         self.initView()
         self.initElements()
         NotificationCenter.default.addObserver(self, selector: #selector(self.initLocal), name: NSNotification.Name(Constants.LOCAL_WORKOUT), object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if self.dataArray.count > 0 {
+            Global.sharedInstance.workoutArray = WorkoutClass.initWithArray(self.dataArray)
+            self.tableView.reloadData()
+        }
     }
     
     @objc func initLocal() {
@@ -79,6 +89,7 @@ class WorkoutsViewController: UIViewController {
                     Global.createJSONDetails("Workouts", jsonData: dataDic)
                     if let dataArray = dataDic.value(forKey: "data") as? NSArray {
                         Global.sharedInstance.workoutArray = WorkoutClass.initWithArray(dataArray)
+                        self.dataArray = dataArray
                         self.tableView.reloadData()
                         return
                     }

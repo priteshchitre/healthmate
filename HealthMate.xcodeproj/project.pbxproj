@@ -61,6 +61,7 @@
 		185EB991254B174B00D2E356 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185EB990254B174B00D2E356 /* SettingsCell.swift */; };
 		186221B32563F3E4000F554D /* SearchExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186221B22563F3E4000F554D /* SearchExerciseViewController.swift */; };
 		186221B625640079000F554D /* ExerciseActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186221B525640079000F554D /* ExerciseActivityViewController.swift */; };
+		18630C21256773BC009238D9 /* AppleUserClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18630C20256773BC009238D9 /* AppleUserClass.swift */; };
 		1883D42B255BF43B008C8730 /* Workout.json in Resources */ = {isa = PBXBuildFile; fileRef = 1883D42A255BF43B008C8730 /* Workout.json */; };
 		1883D42E255BF965008C8730 /* WorkoutClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1883D42D255BF965008C8730 /* WorkoutClass.swift */; };
 		188A3D7225495CCB000D365E /* TrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188A3D7125495CCB000D365E /* TrackViewController.swift */; };
@@ -169,6 +170,7 @@
 		185EB990254B174B00D2E356 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		186221B22563F3E4000F554D /* SearchExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchExerciseViewController.swift; sourceTree = "<group>"; };
 		186221B525640079000F554D /* ExerciseActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseActivityViewController.swift; sourceTree = "<group>"; };
+		18630C20256773BC009238D9 /* AppleUserClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleUserClass.swift; sourceTree = "<group>"; };
 		186D194A254D95ED005FF0E4 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1883D42A255BF43B008C8730 /* Workout.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Workout.json; sourceTree = "<group>"; };
 		1883D42D255BF965008C8730 /* WorkoutClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutClass.swift; sourceTree = "<group>"; };
@@ -431,7 +433,7 @@
 			children = (
 				182F0A42254C826F002BEE49 /* HealthMate.entitlements */,
 				18EAC1C6254161AA00F3961B /* Class */,
-				18EAC1C7254161B100F3961B /* Comman */,
+				18EAC1C7254161B100F3961B /* Common */,
 				18EAC1C8254161B900F3961B /* CustomCell */,
 				18EAC1C9254161C700F3961B /* Extension */,
 				18EAC2232541740000F3961B /* Font */,
@@ -460,11 +462,12 @@
 				1844ECD5255586880011BDEE /* WaterClass.swift */,
 				1844ECD82555A0030011BDEE /* WeightClass.swift */,
 				1883D42D255BF965008C8730 /* WorkoutClass.swift */,
+				18630C20256773BC009238D9 /* AppleUserClass.swift */,
 			);
 			path = Class;
 			sourceTree = "<group>";
 		};
-		18EAC1C7254161B100F3961B /* Comman */ = {
+		18EAC1C7254161B100F3961B /* Common */ = {
 			isa = PBXGroup;
 			children = (
 				185E9938255268BF004407C6 /* Font.swift */,
@@ -475,7 +478,7 @@
 				18EAC1CF2541624F00F3961B /* CustomController.swift */,
 				18EAC1D12541624F00F3961B /* Global.swift */,
 			);
-			path = Comman;
+			path = Common;
 			sourceTree = "<group>";
 		};
 		18EAC1C8254161B900F3961B /* CustomCell */ = {
@@ -788,6 +791,7 @@
 				1841B781254AA384005F4638 /* RecipeListCell.swift in Sources */,
 				1824BA8A25544ED700005AA9 /* ExerciseCaloriesDetailsViewController.swift in Sources */,
 				18EAC21225416ED700F3961B /* SingleInputeViewController.swift in Sources */,
+				18630C21256773BC009238D9 /* AppleUserClass.swift in Sources */,
 				182F0A22254BFEFE002BEE49 /* UserProfileViewController.swift in Sources */,
 				18D1CBE42549B0B10051372A /* FoodDetailsViewController.swift in Sources */,
 				18D1CBE72549B0C70051372A /* CustomFoodViewController.swift in Sources */,
@@ -978,9 +982,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = HealthMate/HealthMate.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development: Pritesh Chitre (U5XD7L55ZC)";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 8;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3SJD5H99YV;
 				INFOPLIST_FILE = HealthMate/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -988,9 +992,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.acodecreative.healthmate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "HealthMate Pritesh Development Profile";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "HealthMate/HealthMate-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1006,9 +1011,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = HealthMate/HealthMate.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development: Pritesh Chitre (U5XD7L55ZC)";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 8;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3SJD5H99YV;
 				INFOPLIST_FILE = HealthMate/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1016,9 +1021,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.acodecreative.healthmate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "HealthMate Pritesh Development Profile";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "HealthMate/HealthMate-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

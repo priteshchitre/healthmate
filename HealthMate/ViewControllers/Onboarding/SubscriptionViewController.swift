@@ -279,7 +279,7 @@ class SubscriptionViewController: UIViewController {
     @IBAction func onContinueButtonTap(_ sender: Any) {
         
         if self.selectedPlan == .WEEKLY {
-
+            
             if UserClass.getWeeklySubscriptionId() == PLANS.WEEKLY_3DAYS_TRIAL.rawValue {
                 self.selectedPlan = .WEEKLY_3DAYS_TRIAL
             }
@@ -329,20 +329,23 @@ class SubscriptionViewController: UIViewController {
                 }
                 TenjinSDK.sendEvent(withName: self.selectedPlan.rawValue)
                 
-                if self.selectedPlan == .MONTHLY || self.selectedPlan == .YEARLY {
-                    
-                    if let transaction = purchase.transaction as? SKPaymentTransaction {
+                IAPHelper.isTrial(productId: self.selectedPlan.rawValue) { (isTrialPeriod) in
                         
-                        if let receiptDataURL = Bundle.main.appStoreReceiptURL {
+                    if isTrialPeriod {
+                        TenjinSDK.sendEvent(withName: "start_trial")
+                    }
+                    else {
+                        
+                        if let transaction = purchase.transaction as? SKPaymentTransaction {
                             
-                            if let data = try? Data(contentsOf: receiptDataURL) {
-                                TenjinSDK.transaction(transaction, andReceipt: data)
+                            if let receiptDataURL = Bundle.main.appStoreReceiptURL {
+                                
+                                if let data = try? Data(contentsOf: receiptDataURL) {
+                                    TenjinSDK.transaction(transaction, andReceipt: data)
+                                }
                             }
                         }
                     }
-                }
-                else {
-                    TenjinSDK.sendEvent(withName: "start_trial")
                 }
             }
             if let alert = self.alertForPurchaseResult(result) {

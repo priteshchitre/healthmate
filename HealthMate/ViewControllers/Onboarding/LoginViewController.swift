@@ -107,6 +107,26 @@ class LoginViewController: UIViewController, ASAuthorizationControllerDelegate {
                 UserClass.setEmail(str)
             }
             UserClass.setAppleUserId(userIdentifier)
+            
+            if UserClass.getName() == "" || UserClass.getEmail() == "" {
+                
+                let array = AppleUserClass.getAppleUserArray()
+                let filter = array.filter { (obj) -> Bool in
+                    return obj.userId == UserClass.getAppleUserId()
+                }
+                
+                if filter.count > 0 {
+                    UserClass.setName(filter[0].name)
+                    UserClass.setEmail(filter[0].email)
+                }
+            }
+            
+            let appleObject = AppleUserClass()
+            appleObject.name = UserClass.getName()
+            appleObject.email = UserClass.getEmail()
+            appleObject.userId = UserClass.getAppleUserId()
+            AppleUserClass.updateRecord(appleObject)
+            
             self.register()
             //NotificationCenter.default.post(name: NSNotification.Name("OpenCreatingProfileView"), object: nil)
         }
@@ -208,7 +228,6 @@ class LoginViewController: UIViewController, ASAuthorizationControllerDelegate {
                 Global.hideProgressHud()
             }
             if let dataDic = result {
-                
                 if let userId = dataDic.value(forKey: "userId") as? String {
                     UserClass.setUserId(userId)
                 }

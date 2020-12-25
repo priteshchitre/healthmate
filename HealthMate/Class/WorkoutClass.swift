@@ -72,7 +72,12 @@ class WorkoutExerciseClass: NSObject {
         object.duration = AnyObjectRef(data.value(forKey: "duration") as AnyObject).intValue()
         object.met = AnyObjectRef(data.value(forKey: "met") as AnyObject).floatValue()
         
-        let caloriesBurnPerHour = UserClass.getWeight() * object.met
+        var currentWeight = UserClass.getWeight()
+        if UserClass.getWeightMeasurement().lowercased() != "kg" {
+            currentWeight = currentWeight / 2.205
+        }
+        
+        let caloriesBurnPerHour = currentWeight * object.met
         let second = Float(object.duration) / Float(3600)
         object.calorie = Float(Int(ceilf(caloriesBurnPerHour * second)))
         return object
@@ -135,6 +140,7 @@ class RecipeClass: NSObject {
     var directionsArray : [String] = []
     var recipeDescription : String = ""
     var meals : [String] = []
+    var servingSize : String = ""
     
     class func initWithData(_ data : NSDictionary) -> RecipeClass {
         
@@ -161,6 +167,7 @@ class RecipeClass: NSObject {
             object.meals = array
         }
         object.totalTime = object.preperationTime + object.cookTime
+        object.servingSize = AnyObjectRef(data.value(forKey: "servingSize") as AnyObject).stringValue()
         return object
     }
     

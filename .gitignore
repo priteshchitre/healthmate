@@ -1,0 +1,5 @@
+*.lock
+*.xcworkspace
+Pods/
+jdaeli.xcuserdatad
+.DS_Store

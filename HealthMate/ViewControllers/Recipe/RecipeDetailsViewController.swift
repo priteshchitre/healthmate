@@ -8,12 +8,18 @@
 import UIKit
 import Charts
 import SDWebImage
+import ActionSheetPicker_3_0
 
 class RecipeDetailsViewController: UIViewController, ChartViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
     var object = RecipeClass()
+    var val1Index : Int = 1
+    var val2Index : Int = 0
+    var selectedServing : Float = 1
+    var val1 : Float = 1
+    var val2 : Float = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,6 +72,12 @@ class RecipeDetailsViewController: UIViewController, ChartViewDelegate {
     
     @objc func onAteButtonTap() {
         
+        let picker = ActionSheetCustomPicker(title: "Serving".toLocalize(), delegate: self, showCancelButton: true, origin: self.view, initialSelections: [self.val1Index,self.val2Index])
+        picker?.show()
+    }
+    
+    func openMealSelection() {
+        
         let actionSheet = UIAlertController(title: "", message: "", preferredStyle: UIAlertController.Style.actionSheet)
         
         actionSheet.addAction(UIAlertAction(title: "Breakfast".toLocalize(), style: UIAlertAction.Style.default, handler: { (action) in
@@ -101,17 +113,17 @@ class RecipeDetailsViewController: UIViewController, ChartViewDelegate {
         foodObject.carb = self.object.carbs
         foodObject.fat = self.object.fat
         foodObject.protein = self.object.protein
-        foodObject.calorie = self.object.calorie
+        foodObject.calorie = self.object.calorie * self.selectedServing
 
         let consumedObject = ConsumeClass()
         consumedObject.consumeId = "\(timestamp)"
 
         consumedObject.date = formatter.string(from: Date())
         consumedObject.mealType = mealType
-        consumedObject.servings = 1
+        consumedObject.servings = self.selectedServing
         
         ConsumeClass.updateRecord(consumedObject, foodObject: foodObject)
-        Global.showSuccess("\(self.object.calorie.toString()) \("Calories_added".toLocalize())")
+        Global.showSuccess("\(foodObject.calorie.toString()) \("Calories_added".toLocalize())")
     }
     
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
@@ -206,7 +218,8 @@ extension RecipeDetailsViewController : UITableViewDelegate, UITableViewDataSour
             let cell = self.tableView.dequeueReusableCell(withIdentifier: "RecipeCell", for: indexPath) as! RecipeListCell
             cell.recipeTitleLabel.text = object.title
             cell.recipeImageView.sd_setImage(with: URL(string: object.image)!, placeholderImage: UIImage(named: "recipePlaceholder"), options: SDWebImageOptions.continueInBackground, context: nil)
-            cell.seringLabel.text = "\(object.calorie.toString()) cal/\("servings".toLocalize()), \("serve".toLocalize()) \(object.serve)"
+//            cell.seringLabel.text = "\(object.calorie.toString()) cal/\("servings".toLocalize()), \("serve".toLocalize()) \(object.serve)"
+            cell.seringLabel.text = ""
             return cell
         }
         if indexPath.section == 1 {
@@ -234,11 +247,12 @@ extension RecipeDetailsViewController : UITableViewDelegate, UITableViewDataSour
                 let carbPer = self.object.carbs * 100 / totalGram
                 let proteinPer = self.object.protein * 100 / totalGram
                 
-                cell.totalCaloriesLabel.text = "\(self.object.calorie.toString()) \("Total_Calories".toLocalize())"
+                cell.totalCaloriesLabel.text = "\(self.object.calorie.toString()) \("Calories_per_Serving".toLocalize())"
+                cell.subTitleLabel.text = "\("Serving_Size".toLocalize()) : \(object.servingSize)"
                 
-                cell.fatLabel.text = "\("Fat".toLocalize()) : \(self.object.fat.toString()) g/\(fatPer.toString()) %"
-                cell.carbLabel.text = "\("Carb".toLocalize()) : \(self.object.carbs.toString()) g/\(carbPer.toString()) %"
-                cell.proteinLabel.text = "\("Protein".toLocalize()) : \(self.object.protein.toString()) g/\(proteinPer.toString()) %"
+                cell.fatLabel.text = "\("Fat".toLocalize()) : \(self.object.fat.toString())g / \(fatPer.toString())%"
+                cell.carbLabel.text = "\("Carb".toLocalize()) : \(self.object.carbs.toString())g / \(carbPer.toString())%"
+                cell.proteinLabel.text = "\("Protein".toLocalize()) : \(self.object.protein.toString())g / \(proteinPer.toString())%"
                 return cell
             }
             
@@ -296,5 +310,50 @@ extension RecipeDetailsViewController : UITableViewDelegate, UITableViewDataSour
         cell.titleLabel.text = self.object.directionsArray[indexPath.row - 1]
         cell.numberLabel.text = "\(indexPath.row)"
         return cell
+    }
+}
+extension RecipeDetailsViewController : ActionSheetCustomPickerDelegate {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        2
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
+        if component == 0 {
+            return 101
+        }
+        if component == 1 {
+            return 100
+        }
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
+        if component == 0 {
+            return "\(row)"
+        }
+        if component == 1 {
+            let str = String(format: "%.2f", Float(Float(row)/100))
+            return str
+        }
+        return self.object.servingSize
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        if component == 0 {
+            self.val1 = Float(row)
+            self.val1Index = row
+        }
+        if component == 1 {
+            self.val2 = Float(Float(row)/100)
+            self.val2Index = row
+        }
+        self.selectedServing = self.val1 + self.val2
+    }
+    func actionSheetPickerDidSucceed(_ actionSheetPicker: AbstractActionSheetPicker!, origin: Any!) {
+        
+        self.openMealSelection()
     }
 }
